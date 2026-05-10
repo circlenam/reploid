@@ -6,7 +6,7 @@
 <title>Reploid by YD Labs — Your first spheroid starts here.</title>
 <meta name="description" content="재생 소재로 만든 합리적 가격의 3D 세포배양 마이크로웰 몰드. 대학·연구실·교육 현장을 위해.">
 
-<!-- Google Fonts: Pretendard 대체로 Inter + Noto Sans KR -->
+<!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
@@ -153,6 +153,7 @@ nav {
   border: 1px solid var(--gray-light);
   padding: 6px 12px;
   border-radius: 6px;
+  background: transparent;
 }
 @media (max-width: 768px) {
   .nav-links { display: none; }
@@ -359,23 +360,36 @@ nav {
   padding: 12px;
   margin-bottom: 16px;
 }
+
+/* ===== YouTube 반응형 임베드 ===== */
 .video-embed {
-  margin-top: 64px;
-  background: var(--white);
-  border-radius: 16px;
-  aspect-ratio: 16 / 9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px dashed var(--green-deep);
-  color: var(--green-deep);
-  font-size: 1rem;
-  text-align: center;
-  padding: 24px;
+  margin: 64px auto 0;
   max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(45, 95, 78, 0.12);
+  background: var(--charcoal);
 }
+.video-embed iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 16px;
+}
+.video-caption {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 0.9rem;
+  color: var(--gray-mid);
+}
+
 @media (max-width: 768px) {
   .how-steps { grid-template-columns: repeat(2, 1fr); }
 }
@@ -860,12 +874,18 @@ footer {
       </div>
     </div>
 
+    <!-- ===== YouTube 영상 임베드 ===== -->
     <div class="video-embed">
-      <div>
-        <span class="placeholder-note">[영상 자리]</span>
-        <span class="placeholder-spec">"30초 사용법" YouTube 임베드 영상<br>권장 비율: 16:9</span>
-      </div>
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/F4MCWsL3vfY?rel=0&modestbranding=1"
+        title="Reploid 사용법 — 마이크로웰 몰드 활용법"
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+        referrerpolicy="strict-origin-when-cross-origin">
+      </iframe>
     </div>
+    <p class="video-caption">▶ 실제 사용 영상으로 한 번에 이해하기</p>
   </div>
 </section>
 
