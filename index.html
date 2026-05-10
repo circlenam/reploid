@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reploid by YD Labs — Your first spheroid starts here.</title>
+<meta name="description" content="재생 소재로 만든 합리적 가격의 3D 세포배양 마이크로웰 몰드. 대학·연구실·교육 현장을 위해.">
+
+<!-- Google Fonts: Pretendard 대체로 Inter + Noto Sans KR -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================
+   RESET & BASE
+   ============================================ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #2A2A2A;
+  background: #FFFFFF;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; }
+
+/* ============================================
+   COLOR TOKENS
+   ============================================ */
+:root {
+  --green-deep: #2D5F4E;
+  --green-soft: #E8F0EC;
+  --beige: #F5F1EA;
+  --charcoal: #2A2A2A;
+  --gray-mid: #6B6B6B;
+  --gray-light: #E5E5E5;
+  --white: #FFFFFF;
+  --max-width: 1140px;
+}
+
+/* ============================================
+   LAYOUT
+   ============================================ */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+section { padding: 96px 0; }
+@media (max-width: 768px) {
+  section { padding: 64px 0; }
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+h1, h2, h3, h4 { font-weight: 700; line-height: 1.25; letter-spacing: -0.02em; }
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+h2 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); margin-bottom: 16px; }
+h3 { font-size: 1.25rem; margin-bottom: 8px; }
+.section-label {
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--green-deep);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+.section-subtitle {
+  font-size: 1.125rem;
+  color: var(--gray-mid);
+  max-width: 640px;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--green-deep);
+  color: var(--white);
+}
+.btn-primary:hover {
+  background: #234B3D;
+  transform: translateY(-2px);
+}
+.btn-secondary {
+  background: transparent;
+  color: var(--green-deep);
+  border: 2px solid var(--green-deep);
+}
+.btn-secondary:hover {
+  background: var(--green-soft);
+}
+.btn-large {
+  padding: 18px 36px;
+  font-size: 1.125rem;
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--gray-light);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+.logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--green-deep);
+  letter-spacing: -0.02em;
+}
+.logo span { color: var(--charcoal); font-weight: 400; }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a {
+  font-size: 0.95rem;
+  color: var(--charcoal);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--green-deep); }
+.lang-toggle {
+  font-size: 0.85rem;
+  color: var(--gray-mid);
+  border: 1px solid var(--gray-light);
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+.hero {
+  background: linear-gradient(180deg, var(--beige) 0%, var(--white) 100%);
+  padding: 120px 0 96px;
+}
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.hero-content h1 { margin-bottom: 24px; }
+.hero-content .subtitle {
+  font-size: 1.25rem;
+  color: var(--gray-mid);
+  margin-bottom: 32px;
+  max-width: 480px;
+}
+.hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-visual {
+  background: var(--green-soft);
+  border-radius: 16px;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed var(--green-deep);
+  color: var(--green-deep);
+  font-size: 0.95rem;
+  text-align: center;
+  padding: 24px;
+}
+@media (max-width: 768px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero { padding: 64px 0; }
+}
+
+/* ============================================
+   PROBLEM
+   ============================================ */
+.problem { background: var(--white); }
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 48px;
+}
+.problem-card {
+  padding: 32px 24px;
+  background: var(--beige);
+  border-radius: 12px;
+}
+.problem-card .icon {
+  width: 48px; height: 48px;
+  background: var(--white);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+@media (max-width: 768px) {
+  .problem-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================
+   SOLUTION
+   ============================================ */
+.solution { background: var(--green-soft); }
+.solution-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.solution-image-placeholder {
+  background: var(--white);
+  border-radius: 16px;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed var(--green-deep);
+  color: var(--green-deep);
+  font-size: 0.95rem;
+  text-align: center;
+  padding: 24px;
+}
+.value-list { margin-top: 32px; display: flex; flex-direction: column; gap: 24px; }
+.value-item { display: flex; gap: 16px; align-items: flex-start; }
+.value-item .icon-circle {
+  flex-shrink: 0;
+  width: 48px; height: 48px;
+  background: var(--green-deep);
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .solution-inner { grid-template-columns: 1fr; gap: 40px; }
+}
+
+/* ============================================
+   PROOF
+   ============================================ */
+.proof { background: var(--white); }
+.proof-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+.proof-card {
+  background: var(--beige);
+  border-radius: 12px;
+  padding: 32px;
+}
+.proof-card-image {
+  background: var(--white);
+  border-radius: 8px;
+  aspect-ratio: 16 / 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed var(--green-deep);
+  color: var(--green-deep);
+  font-size: 0.875rem;
+  text-align: center;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+.badges {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 48px;
+  justify-content: center;
+}
+.badge {
+  background: var(--green-deep);
+  color: var(--white);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.badge.outline {
+  background: transparent;
+  color: var(--green-deep);
+  border: 1px solid var(--green-deep);
+}
+@media (max-width: 768px) {
+  .proof-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================
+   HOW IT WORKS
+   ============================================ */
+.how { background: var(--beige); }
+.how-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+.how-step {
+  text-align: center;
+}
+.how-step .step-num {
+  width: 56px; height: 56px;
+  background: var(--green-deep);
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 auto 20px;
+}
+.how-step .step-img {
+  background: var(--white);
+  border-radius: 8px;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed var(--green-deep);
+  color: var(--green-deep);
+  font-size: 0.8rem;
+  text-align: center;
+  padding: 12px;
+  margin-bottom: 16px;
+}
+.video-embed {
+  margin-top: 64px;
+  background: var(--white);
+  border-radius: 16px;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed var(--green-deep);
+  color: var(--green-deep);
+  font-size: 1rem;
+  text-align: center;
+  padding: 24px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (max-width: 768px) {
+  .how-steps { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ============================================
+   PRODUCTS
+   ============================================ */
+.products { background: var(--white); }
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+.product-card {
+  border: 1px solid var(--gray-light);
+  border-radius: 16px;
+  padding: 32px;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+.product-card:hover {
+  border-color: var(--green-deep);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(45, 95, 78, 0.08);
+}
+.product-card.featured {
+  border-color: var(--green-deep);
+  background: var(--green-soft);
+  position: relative;
+}
+.product-card.featured::before {
+  content: 'BEST';
+  position: absolute;
+  top: -12px;
+  right: 24px;
+  background: var(--green-deep);
+  color: var(--white);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+.product-card h3 { font-size: 1.5rem; }
+.product-card .tier { color: var(--gray-mid); font-size: 0.95rem; margin-bottom: 24px; }
+.product-card .price {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--green-deep);
+  margin-bottom: 24px;
+}
+.product-card .price small { font-size: 0.875rem; color: var(--gray-mid); font-weight: 400; }
+.product-card ul {
+  list-style: none;
+  margin-bottom: 32px;
+  flex-grow: 1;
+}
+.product-card ul li {
+  padding: 8px 0;
+  font-size: 0.95rem;
+  color: var(--charcoal);
+  display: flex;
+  gap: 8px;
+}
+.product-card ul li::before {
+  content: '✓';
+  color: var(--green-deep);
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .products-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================
+   LEARN
+   ============================================ */
+.learn { background: var(--beige); }
+.learn-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+.learn-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+}
+.learn-card .learn-img {
+  background: var(--green-soft);
+  border-radius: 8px;
+  aspect-ratio: 16 / 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed var(--green-deep);
+  color: var(--green-deep);
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+.learn-card h3 { margin-bottom: 12px; }
+.learn-card p { color: var(--gray-mid); font-size: 0.95rem; margin-bottom: 24px; flex-grow: 1; }
+.learn-card .btn { align-self: flex-start; }
+@media (max-width: 768px) {
+  .learn-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================
+   TESTIMONIALS
+   ============================================ */
+.testimonials { background: var(--white); }
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  margin-top: 48px;
+}
+.testimonial {
+  background: var(--beige);
+  border-radius: 16px;
+  padding: 32px;
+}
+.testimonial blockquote {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--charcoal);
+  margin-bottom: 24px;
+  font-style: italic;
+}
+.testimonial blockquote::before { content: '"'; font-size: 2rem; color: var(--green-deep); }
+.testimonial cite {
+  font-size: 0.95rem;
+  color: var(--gray-mid);
+  font-style: normal;
+}
+.testimonial cite strong { color: var(--charcoal); display: block; margin-bottom: 4px; }
+@media (max-width: 768px) {
+  .testimonials-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================
+   FAQ
+   ============================================ */
+.faq { background: var(--beige); }
+.faq-list { margin-top: 48px; max-width: 800px; margin-left: auto; margin-right: auto; }
+.faq-item {
+  background: var(--white);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+.faq-question {
+  width: 100%;
+  text-align: left;
+  padding: 20px 24px;
+  background: none;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.faq-question .plus { color: var(--green-deep); font-size: 1.5rem; transition: transform 0.2s; }
+.faq-item.open .plus { transform: rotate(45deg); }
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  color: var(--gray-mid);
+  line-height: 1.7;
+}
+.faq-item.open .faq-answer { max-height: 500px; }
+.faq-answer-inner { padding: 0 24px 20px; }
+
+/* ============================================
+   FINAL CTA
+   ============================================ */
+.final-cta {
+  background: var(--green-deep);
+  color: var(--white);
+  text-align: center;
+}
+.final-cta h2 { color: var(--white); }
+.final-cta p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.125rem;
+  margin: 16px 0 32px;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.final-cta .btn-primary {
+  background: var(--white);
+  color: var(--green-deep);
+}
+.final-cta .btn-primary:hover {
+  background: var(--beige);
+}
+.final-cta .btn-secondary {
+  color: var(--white);
+  border-color: var(--white);
+}
+.final-cta .btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.email-form {
+  display: flex;
+  gap: 8px;
+  max-width: 480px;
+  margin: 32px auto 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.email-form input {
+  flex: 1;
+  min-width: 240px;
+  padding: 14px 20px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer {
+  background: #1A1A1A;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 48px 0 24px;
+  font-size: 0.9rem;
+}
+.footer-inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 32px;
+}
+.footer-brand .logo { color: var(--white); margin-bottom: 12px; display: block; }
+.footer-brand .logo span { color: rgba(255, 255, 255, 0.6); }
+.footer-col h4 {
+  color: var(--white);
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+}
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 8px; }
+.footer-col ul li a:hover { color: var(--white); }
+.footer-bottom {
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 0.85rem;
+}
+@media (max-width: 768px) {
+  .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+}
+
+/* ============================================
+   PLACEHOLDER STYLE (사진/영상 자리 안내)
+   ============================================ */
+.placeholder-note {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 4px;
+}
+.placeholder-spec {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">Reploid<span> by YD Labs</span></a>
+    <div class="nav-links">
+      <a href="#solution">제품</a>
+      <a href="#proof">검증 데이터</a>
+      <a href="#products">구매</a>
+      <a href="#learn">교육</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <button class="lang-toggle">KR / EN</button>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <h1>Your first spheroid<br>starts here.</h1>
+        <p class="subtitle">재생 소재로 만든 합리적 가격의 3D 세포배양 마이크로웰 몰드. 대학·연구실·교육 현장을 위해.</p>
+        <div class="hero-cta">
+          <a href="#products" class="btn btn-primary">🛒 쿠팡에서 구매하기</a>
+          <a href="#sample" class="btn btn-secondary">📩 무료 샘플 신청</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div>
+          <span class="placeholder-note">[영상 자리]</span>
+          <span class="placeholder-spec">실제 스페로이드 형성 과정 현미경 영상<br>(3~5초 무한 루프, MP4 또는 GIF)<br>권장 비율: 4:3</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROBLEM ===== -->
+<section class="problem" id="problem">
+  <div class="container">
+    <span class="section-label">Why Reploid</span>
+    <h2>3D 배양, 시작이 어렵습니다.</h2>
+    <p class="section-subtitle">많은 연구자들이 3D 세포배양의 가치를 알지만, 진입 장벽 때문에 망설이고 있습니다.</p>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="icon">💸</div>
+        <h3>비싼 소모품</h3>
+        <p>상용 마이크로웰 한 팩이 수십만 원. 실패 한 번이 부담스럽습니다.</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">📚</div>
+        <h3>흩어진 정보</h3>
+        <p>프로토콜은 논문에 분산되어 있고, 시행착오를 같이 풀어줄 사람이 없습니다.</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">🌍</div>
+        <h3>해외 의존</h3>
+        <p>국산 대체재가 부족해 납기·단가 모두 외부 변수에 휘둘립니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SOLUTION ===== -->
+<section class="solution" id="solution">
+  <div class="container">
+    <div class="solution-inner">
+      <div class="solution-image-placeholder">
+        <div>
+          <span class="placeholder-note">[제품 사진 자리]</span>
+          <span class="placeholder-spec">마이크로웰 몰드 제품 사진<br>(흰 배경, 손에 들린 사이즈감 보이게)<br>권장 비율: 1:1, 고해상도</span>
+        </div>
+      </div>
+      <div>
+        <span class="section-label">Our Solution</span>
+        <h2>합리적 가격, 검증된 성능, 지속가능한 소재.</h2>
+        <p class="section-subtitle">YD Labs의 Reploid는 폐플라스틱 사출성형 기반 마이크로웰 몰드로, 3D 배양 진입을 처음부터 끝까지 함께합니다.</p>
+
+        <div class="value-list">
+          <div class="value-item">
+            <div class="icon-circle">💰</div>
+            <div>
+              <h3>Affordable</h3>
+              <p>기존 포토리소그래피 몰드 대비 약 70% 원가 절감.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="icon-circle">🧪</div>
+            <div>
+              <h3>Reliable</h3>
+              <p>실제 암세포·하이드로젤 배양 환경에서 균일한 스페로이드 형성 검증.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="icon-circle">🌱</div>
+            <div>
+              <h3>Sustainable</h3>
+              <p>재생 플라스틱 원료 활용. 연구의 가치를 지구의 가치와 함께.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROOF ===== -->
+<section class="proof" id="proof">
+  <div class="container">
+    <span class="section-label">Evidence</span>
+    <h2>말이 아닌, 데이터로 증명합니다.</h2>
+    <p class="section-subtitle">고려대학교 안산병원 공동연구를 통해 실제 스페로이드 형성과 균일성을 검증하였습니다.</p>
+
+    <div class="proof-grid">
+      <div class="proof-card">
+        <div class="proof-card-image">
+          <div>
+            <span class="placeholder-note">[그래프/데이터 이미지 자리]</span>
+            <span class="placeholder-spec">"Reploid vs 상용 몰드"<br>스페로이드 균일도·생존율 비교 그래프<br>권장 비율: 16:10</span>
+          </div>
+        </div>
+        <h3>균일도 비교 데이터</h3>
+        <p>상용 제품과 통계적으로 유의미한 차이 없는 균일도와 생존율을 확인.</p>
+      </div>
+      <div class="proof-card">
+        <div class="proof-card-image">
+          <div>
+            <span class="placeholder-note">[현미경 이미지 자리]</span>
+            <span class="placeholder-spec">스페로이드 형성 현미경 사진 (4~6장 갤러리)<br>권장 비율: 16:10</span>
+          </div>
+        </div>
+        <h3>현미경 이미지</h3>
+        <p>실제 암세포 라인에서 형성된 3D 스페로이드의 형태 및 성장 추적.</p>
+      </div>
+    </div>
+
+    <div class="badges">
+      <span class="badge">특허 출원 2건</span>
+      <span class="badge">교육부 장관상 수상</span>
+      <span class="badge outline">고려대학교 안산병원 공동연구</span>
+      <span class="badge outline">2025 학생창업유망팀 300+</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section class="how" id="how">
+  <div class="container">
+    <span class="section-label">How It Works</span>
+    <h2>30분 만에 첫 스페로이드.</h2>
+    <p class="section-subtitle">복잡한 셋업 없이, 받자마자 시작할 수 있도록 설계되었습니다.</p>
+
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="step-num">1</div>
+        <div class="step-img">
+          <div>
+            <span class="placeholder-note">[일러스트 자리]</span>
+            <span class="placeholder-spec">몰드 받기</span>
+          </div>
+        </div>
+        <h3>몰드 수령</h3>
+        <p>EO 멸균 포장으로 즉시 사용 가능.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-num">2</div>
+        <div class="step-img">
+          <div>
+            <span class="placeholder-note">[일러스트 자리]</span>
+            <span class="placeholder-spec">하이드로젤 주입</span>
+          </div>
+        </div>
+        <h3>하이드로젤 주입</h3>
+        <p>아가로스/콜라겐 등 원하는 젤을 부어 굳히기.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-num">3</div>
+        <div class="step-img">
+          <div>
+            <span class="placeholder-note">[일러스트 자리]</span>
+            <span class="placeholder-spec">탈형</span>
+          </div>
+        </div>
+        <h3>탈형 & 시딩</h3>
+        <p>미세홈 보조 구조로 손상 없이 분리 후 세포 시딩.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-num">4</div>
+        <div class="step-img">
+          <div>
+            <span class="placeholder-note">[일러스트 자리]</span>
+            <span class="placeholder-spec">스페로이드 완성</span>
+          </div>
+        </div>
+        <h3>스페로이드 완성</h3>
+        <p>균일한 3D 스페로이드 형성 — 분석·관찰 시작.</p>
+      </div>
+    </div>
+
+    <div class="video-embed">
+      <div>
+        <span class="placeholder-note">[영상 자리]</span>
+        <span class="placeholder-spec">"30초 사용법" YouTube 임베드 영상<br>권장 비율: 16:9</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRODUCTS ===== -->
+<section class="products" id="products">
+  <div class="container">
+    <span class="section-label">Products</span>
+    <h2>당신에게 맞는 라인업.</h2>
+    <p class="section-subtitle">개인 실험부터 교육 실습까지, 용도에 맞춰 선택하세요.</p>
+
+    <div class="products-grid">
+      <div class="product-card">
+        <h3>Tier 1 — Raw</h3>
+        <p class="tier">비멸균 / 자가 오토클레이브</p>
+        <div class="price">₩XX,XXX <small>/ pack</small></div>
+        <ul>
+          <li>몰드 OO개입</li>
+          <li>비멸균 포장</li>
+          <li>오토클레이브 멸균 후 사용</li>
+          <li>가장 합리적인 옵션</li>
+        </ul>
+        <a href="https://www.coupang.com" target="_blank" rel="noopener" class="btn btn-secondary">🛒 쿠팡에서 구매</a>
+      </div>
+
+      <div class="product-card featured">
+        <h3>Tier 2 — Sterile</h3>
+        <p class="tier">EO 가스 멸균 포장</p>
+        <div class="price">₩XX,XXX <small>/ pack</small></div>
+        <ul>
+          <li>몰드 OO개입</li>
+          <li>EO 가스 멸균 완료</li>
+          <li>개봉 즉시 사용 가능</li>
+          <li>연구실 표준 패키지</li>
+        </ul>
+        <a href="https://www.coupang.com" target="_blank" rel="noopener" class="btn btn-primary">🛒 쿠팡에서 구매</a>
+      </div>
+
+      <div class="product-card">
+        <h3>Tier 3 — Education Kit</h3>
+        <p class="tier">몰드 + 강의 + 가이드북</p>
+        <div class="price">₩XX,XXX <small>/ kit</small></div>
+        <ul>
+          <li>EO 멸균 몰드 OO개</li>
+          <li>온라인 강의 액세스</li>
+          <li>실습 가이드북 PDF</li>
+          <li>교육 현장 추천</li>
+        </ul>
+        <a href="https://www.udemy.com" target="_blank" rel="noopener" class="btn btn-secondary">🎓 Udemy에서 신청</a>
+      </div>
+    </div>
+
+    <p style="text-align: center; margin-top: 32px; color: var(--gray-mid); font-size: 0.95rem;">
+      대량 구매·세금계산서 발급 문의는 <a href="mailto:hello@reploid.kr" style="color: var(--green-deep); font-weight: 600;">hello@reploid.kr</a> 로 연락주세요.
+    </p>
+  </div>
+</section>
+
+<!-- ===== LEARN ===== -->
+<section class="learn" id="learn">
+  <div class="container">
+    <span class="section-label">Learn</span>
+    <h2>혼자 헤매지 마세요.</h2>
+    <p class="section-subtitle">제품과 함께 학습 콘텐츠를 제공합니다. 첫 스페로이드까지 함께 갑니다.</p>
+
+    <div class="learn-grid">
+      <div class="learn-card">
+        <div class="learn-img">
+          <div>
+            <span class="placeholder-note">[썸네일 자리]</span>
+            <span class="placeholder-spec">온라인 강의 썸네일<br>16:10</span>
+          </div>
+        </div>
+        <h3>온라인 강의</h3>
+        <p>세포배양 기초부터 3D 스페로이드 분석까지. 현장감 있는 영상으로 배웁니다.</p>
+        <a href="https://www.udemy.com" target="_blank" rel="noopener" class="btn btn-primary">🎓 강의 보러가기</a>
+      </div>
+      <div class="learn-card">
+        <div class="learn-img">
+          <div>
+            <span class="placeholder-note">[일러스트 자리]</span>
+            <span class="placeholder-spec">PDF 가이드 표지<br>16:10</span>
+          </div>
+        </div>
+        <h3>무료 프로토콜 PDF</h3>
+        <p>이메일 입력 즉시 발송. "30분 만에 첫 스페로이드 만들기" 가이드.</p>
+        <a href="#sample" class="btn btn-secondary">📄 무료 다운로드</a>
+      </div>
+      <div class="learn-card">
+        <div class="learn-img">
+          <div>
+            <span class="placeholder-note">[썸네일 자리]</span>
+            <span class="placeholder-spec">블로그 최신글 썸네일<br>16:10</span>
+          </div>
+        </div>
+        <h3>블로그 & 유튜브</h3>
+        <p>실패담, 트러블슈팅, 최신 3D 배양 트렌드까지 — 매주 업데이트.</p>
+        <a href="#" class="btn btn-secondary">📝 글 보러가기</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <span class="section-label">Voices</span>
+    <h2>실제 연구자들의 이야기.</h2>
+
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <blockquote>실제 우리 랩에서 키운 스페로이드의 균일도가 상용 제품과 차이 없었습니다. 가격 대비 만족도가 매우 높습니다.</blockquote>
+        <cite>
+          <strong>○○○ 교수</strong>
+          ○○대학교 ○○학과 / 공동연구 파트너
+        </cite>
+      </div>
+      <div class="testimonial">
+        <blockquote>학생들 실습용으로 부담 없이 도입할 수 있다는 점이 가장 큰 장점입니다. 첫 3D 배양 경험을 만들어주는 제품.</blockquote>
+        <cite>
+          <strong>△△△ 박사</strong>
+          ○○병원 연구센터
+        </cite>
+      </div>
+    </div>
+
+    <p style="text-align: center; margin-top: 32px; color: var(--gray-mid); font-size: 0.9rem;">
+      ※ 위 후기는 게재 동의를 받은 실제 사용자 리뷰입니다. (게재 전까지는 placeholder로 표시)
+    </p>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq" id="faq">
+  <div class="container">
+    <span class="section-label">FAQ</span>
+    <h2>자주 묻는 질문.</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question">
+          폐플라스틱 소재가 세포에 영향을 주지 않나요?
+          <span class="plus">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>세포는 하이드로젤 안에서 자라며 몰드와 직접 접촉하지 않습니다. 또한 자체 비교 실험(상용 몰드 vs Reploid)에서 스페로이드 균일도·생존율의 통계적 차이가 없음을 확인했습니다. 자세한 데이터는 <a href="#proof" style="color: var(--green-deep); font-weight: 600;">검증 섹션</a>을 참고하세요.</p>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          멸균은 어떻게 하나요?
+          <span class="plus">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>Tier 1(Raw)은 사용자가 직접 오토클레이브로 멸균하며, Tier 2(Sterile)는 EO 가스 멸균 후 개별 포장되어 출고됩니다. 두 옵션 모두 검증된 멸균 프로토콜을 따릅니다.</p>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          어떤 세포주에서 검증되었나요?
+          <span class="plus">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>고려대학교 안산병원 공동연구를 통해 OOO 암세포주에서 스페로이드 형성을 검증했습니다. 추가 세포주 검증 데이터는 지속적으로 업데이트됩니다.</p>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          재사용 가능한가요? 몇 회까지?
+          <span class="plus">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>Reploid 몰드는 반복 사용을 전제로 설계되었으며, 자체 테스트상 OO회 이상 사용에서도 웰 형상 안정성이 유지됩니다. 사용 후 세척·멸균 가이드는 가이드북에 포함되어 있습니다.</p>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          배송은 얼마나 걸리나요?
+          <span class="plus">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>쿠팡 로켓배송으로 익일 도착하며, 대량 주문 및 세금계산서 발급은 hello@reploid.kr 로 별도 문의 부탁드립니다.</p>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          연구실/기관 대량 구매는 어떻게 하나요?
+          <span class="plus">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>대량 구매 시 단가 할인 및 세금계산서 발급이 가능합니다. hello@reploid.kr 로 사용 용도와 수량을 보내주시면 24시간 내 견적을 회신드립니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINAL CTA ===== -->
+<section class="final-cta" id="sample">
+  <div class="container">
+    <h2>3D 배양, 오늘 시작하세요.</h2>
+    <p>지금 무료 샘플을 신청하시면, Welcome Kit과 30분 사용 가이드를 함께 보내드립니다.</p>
+
+    <form class="email-form" onsubmit="handleSampleRequest(event)">
+      <input type="email" placeholder="연구실 이메일을 입력하세요" required>
+      <button type="submit" class="btn btn-primary btn-large">📩 무료 샘플 신청</button>
+    </form>
+
+    <div style="margin-top: 32px;">
+      <a href="https://www.coupang.com" target="_blank" rel="noopener" class="btn btn-secondary btn-large">🛒 바로 구매하러 가기</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="#" class="logo">Reploid<span> by YD Labs</span></a>
+        <p>3D 세포배양의 첫 걸음을 함께 만드는 브랜드.</p>
+        <p style="margin-top: 12px; font-size: 0.85rem;">
+          (주)YD Labs<br>
+          사업자등록번호 OOO-OO-OOOOO<br>
+          주소: ○○시 ○○구 ○○로 OO<br>
+          이메일: hello@reploid.kr
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>제품</h4>
+        <ul>
+          <li><a href="#products">마이크로웰 몰드</a></li>
+          <li><a href="#products">제브라피쉬 몰드</a></li>
+          <li><a href="#products">교육 키트</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>리소스</h4>
+        <ul>
+          <li><a href="#learn">온라인 강의</a></li>
+          <li><a href="#learn">블로그</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="mailto:hello@reploid.kr">문의하기</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 YD Labs. All rights reserved.</span>
+      <div>
+        <a href="#" style="margin-right: 16px;">개인정보처리방침</a>
+        <a href="#">이용약관</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+// FAQ 토글
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    item.classList.toggle('open');
+  });
+});
+
+// 무료 샘플 신청 (실제 운영 시 백엔드/메일 자동화 서비스 연동)
+function handleSampleRequest(event) {
+  event.preventDefault();
+  const email = event.target.querySelector('input').value;
+  alert(`감사합니다! ${email} 으로 Welcome Kit 안내 메일을 보내드리겠습니다.\n\n(실제 운영 시 ConvertKit / Mailchimp / Google Forms 등으로 연동 필요)`);
+  event.target.reset();
+}
+
+// 스무스 스크롤 (offset 보정)
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const targetId = this.getAttribute('href');
+    if (targetId === '#') return;
+    const target = document.querySelector(targetId);
+    if (target) {
+      e.preventDefault();
+      const offset = 70;
+      const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
