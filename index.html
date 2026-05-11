@@ -100,11 +100,27 @@
     margin-left: auto;
     margin-right: auto;
   }
-  .hero-media {
+
+  /* 히어로 영상 — 4:3 자동재생 */
+  .hero-video {
+    position: relative;
+    width: 100%;
     max-width: 600px;
     margin: 0 auto 40px;
     aspect-ratio: 4 / 3;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    background: #000;
   }
+  .hero-video iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
   .hero-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
   /* 문제 섹션 */
@@ -437,8 +453,11 @@
 <header class="hero">
   <h1>3D 세포배양,<br><span class="accent">누구나 오늘 시작할 수 있게.</span></h1>
   <p>합리적인 가격, 검증된 스페로이드 형성, 지속가능한 폐플라스틱 소재. Reploid가 첫 스페로이드를 함께 만들어드립니다.</p>
-  <div class="hero-media placeholder">
-    [영상 자리]<br>스페로이드 형성 루프 영상<br>권장 비율: 4:3 / 3-5초 루프 / MP4 또는 GIF
+  <div class="hero-video">
+    <iframe src="https://www.youtube-nocookie.com/embed/Q9MLASaDfqY?autoplay=1&mute=1&loop=1&playlist=Q9MLASaDfqY&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
+            title="Reploid 스페로이드 형성 영상"
+            allow="autoplay; encrypted-media; picture-in-picture"
+            allowfullscreen></iframe>
   </div>
   <div class="hero-cta">
     <a href="https://www.coupang.com" target="_blank" class="btn btn-primary">쿠팡에서 구매하기</a>
@@ -681,7 +700,7 @@
   <p>무료 샘플 요청부터 강의 수강까지, 가장 쉬운 3D 세포배양의 시작.</p>
   <div class="hero-cta">
     <a href="https://www.coupang.com" target="_blank" class="btn btn-primary">쿠팡에서 구매</a>
-    <a href="mailto:hello@reploid.kr" class="btn btn-secondary">무료 샘플 요청</a>
+    <a href="mailto:namjh@jeiu.ac.kr" class="btn btn-secondary">무료 샘플 요청</a>
   </div>
 </section>
 
@@ -692,7 +711,7 @@
     <a href="#solution">제품</a> ·
     <a href="#learn">학습</a> ·
     <a href="#faq">FAQ</a> ·
-    <a href="mailto:hello@reploid.kr">문의</a>
+    <a href="mailto:namjh@jeiu.ac.kr">문의</a>
   </div>
   <div class="footer-info">
     상호: 리플로이드 | 대표: 홍수영 | 사업자등록번호: 학생창업예정 (U300 참가중) <br>
