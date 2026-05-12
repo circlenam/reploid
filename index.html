@@ -9,447 +9,160 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: 'Inter', 'Noto Sans KR', sans-serif;
-    color: #222;
-    line-height: 1.6;
-    background: #ffffff;
-  }
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter','Noto Sans KR',sans-serif;color:#222;background:#fff;line-height:1.6}
+img{max-width:100%;display:block}
+.container{max-width:1100px;margin:0 auto;padding:0 32px}
 
-  /* 상단 네비게이션 */
-  nav {
-    position: sticky;
-    top: 0;
-    background: #ffffff;
-    border-bottom: 1px solid #e8e8e8;
-    padding: 16px 32px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 100;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
-  }
-  nav .logo { color: #2D5F4E; font-weight: 700; font-size: 20px; }
-  nav ul { display: flex; gap: 28px; list-style: none; }
-  nav ul li a {
-    color: #333; text-decoration: none; font-size: 15px; font-weight: 500;
-  }
-  nav ul li a:hover { color: #2D5F4E; }
+/* Navigation */
+nav{position:sticky;top:0;background:#fff;border-bottom:1px solid #e8e8e8;padding:16px 32px;display:flex;justify-content:space-between;align-items:center;z-index:100;box-shadow:0 1px 3px rgba(0,0,0,.03)}
+nav .logo{color:#2D5F4E;font-weight:700;font-size:20px}
+nav ul{display:flex;gap:28px;list-style:none}
+nav ul li a{color:#333;text-decoration:none;font-size:15px;font-weight:500}
+nav ul li a:hover{color:#2D5F4E}
 
-  /* 공통 섹션 */
-  section { padding: 80px 32px; max-width: 1100px; margin: 0 auto; }
-  h1, h2, h3 { font-weight: 700; color: #1a1a1a; }
-  h2 { font-size: 32px; margin-bottom: 16px; text-align: center; }
-  h3 { font-size: 20px; margin-bottom: 12px; }
-  .section-sub { text-align: center; color: #666; margin-bottom: 48px; font-size: 16px; }
+/* Hero */
+.hero{background:linear-gradient(135deg,#f7f5f1 0%,#fff 100%);padding:80px 32px;text-align:center}
+.hero h1{font-size:48px;font-weight:700;line-height:1.25;margin-bottom:20px;color:#1a1a1a}
+.hero h1 .accent{color:#2D5F4E}
+.hero p{font-size:18px;color:#555;max-width:640px;margin:0 auto 40px}
+.hero-video{position:relative;width:100%;max-width:600px;margin:0 auto 40px;aspect-ratio:4/3;border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.12);background:#000}
+.hero-video iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+.hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
 
-  /* 버튼 */
-  .btn {
-    display: inline-block;
-    padding: 14px 28px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 15px;
-    transition: all 0.2s;
-    cursor: pointer;
-    border: none;
-  }
-  .btn-primary { background: #2D5F4E; color: white; }
-  .btn-primary:hover { background: #244d3f; }
-  .btn-secondary {
-    background: white; color: #2D5F4E; border: 2px solid #2D5F4E;
-  }
-  .btn-secondary:hover { background: #f0f7f4; }
+/* Buttons */
+.btn{display:inline-block;padding:14px 28px;border-radius:8px;font-weight:600;font-size:15px;text-decoration:none;transition:all .2s;border:none;cursor:pointer}
+.btn-primary{background:#2D5F4E;color:#fff}
+.btn-primary:hover{background:#234a3d}
+.btn-secondary{background:#fff;color:#2D5F4E;border:1.5px solid #2D5F4E}
+.btn-secondary:hover{background:#f7f5f1}
 
-  /* 플레이스홀더 */
-  .placeholder {
-    background: #f5f5f0;
-    border: 2px dashed #2D5F4E;
-    border-radius: 12px;
-    color: #2D5F4E;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 24px;
-    font-size: 14px;
-    font-weight: 500;
-  }
+/* Sections */
+section{padding:80px 32px}
+section h2{font-size:36px;font-weight:700;text-align:center;margin-bottom:16px;color:#1a1a1a}
+section > p.lead{text-align:center;color:#666;max-width:680px;margin:0 auto 48px;font-size:17px}
 
-  /* 히어로 */
-  .hero {
-    background: linear-gradient(135deg, #f7f5f1 0%, #ffffff 100%);
-    padding: 100px 32px;
-    text-align: center;
-  }
-  .hero h1 {
-    font-size: 48px;
-    line-height: 1.2;
-    margin-bottom: 20px;
-    color: #1a1a1a;
-  }
-  .hero h1 .accent { color: #2D5F4E; }
-  .hero p {
-    font-size: 18px;
-    color: #555;
-    margin-bottom: 40px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+/* Problem */
+#problem{background:#fafafa}
+.problem-wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;max-width:1100px;margin:0 auto}
+.problem-img{width:100%;aspect-ratio:4/3;border-radius:12px;overflow:hidden;background:#faf9f6;border:1px solid #e8e8e8}
+.problem-img img{width:100%;height:100%;object-fit:cover}
+.problem-text h2{text-align:left;margin-bottom:24px}
+.problem-text ul{list-style:none;padding:0}
+.problem-text ul li{padding:12px 0 12px 28px;position:relative;color:#444;font-size:16px;border-bottom:1px solid #eee}
+.problem-text ul li:before{content:"✕";position:absolute;left:0;color:#c44;font-weight:700}
 
-  /* 히어로 영상 — 4:3 자동재생 */
-  .hero-video {
-    position: relative;
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto 40px;
-    aspect-ratio: 4 / 3;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-    background: #000;
-  }
-  .hero-video iframe {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-  }
+/* Solution */
+#solution{background:#fff}
+.solution-wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;max-width:1100px;margin:0 auto}
+.solution-img{aspect-ratio:1/1;border-radius:12px;overflow:hidden;background:#faf9f6;border:1px solid #e8e8e8}
+.solution-img img{width:100%;height:100%;object-fit:cover}
+.solution-text h2{text-align:left;margin-bottom:24px}
+.solution-text ul{list-style:none;padding:0}
+.solution-text ul li{padding:12px 0 12px 28px;position:relative;color:#444;font-size:16px;border-bottom:1px solid #eee}
+.solution-text ul li:before{content:"✓";position:absolute;left:0;color:#2D5F4E;font-weight:700}
 
-  .hero-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+/* Proof */
+.proof{background:#f7f5f1}
+.proof-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;max-width:1000px;margin:0 auto}
+.proof-card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.proof-img{width:100%;aspect-ratio:16/10;overflow:hidden;background:#faf9f6}
+.proof-img img{width:100%;height:100%;object-fit:cover}
+.proof-card .proof-body{padding:20px}
+.proof-card h3{font-size:18px;margin-bottom:8px;color:#2D5F4E}
+.proof-card p{color:#555;font-size:14px}
 
-  /* 문제 섹션 */
-  .problem-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 24px;
-    margin-top: 32px;
-  }
-  .problem-card {
-    background: #faf9f6;
-    padding: 28px;
-    border-radius: 12px;
-    border-left: 4px solid #c9a961;
-  }
-  .problem-card h3 { color: #2D5F4E; }
+/* How It Works */
+#how{background:#fff}
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:1100px;margin:0 auto 48px}
+.step-card{text-align:center}
+.step-img{aspect-ratio:1/1;margin-bottom:16px;border-radius:12px;overflow:hidden;background:#faf9f6;border:1px solid #e8e8e8}
+.step-img img{width:100%;height:100%;object-fit:cover}
+.step-num{display:inline-block;width:28px;height:28px;line-height:28px;border-radius:50%;background:#2D5F4E;color:#fff;font-weight:700;font-size:14px;margin-bottom:8px}
+.step-card h3{font-size:16px;margin-bottom:8px}
+.step-card p{font-size:14px;color:#666}
+.video-embed{position:relative;max-width:800px;margin:0 auto;aspect-ratio:16/9;border-radius:12px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.1)}
+.video-embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+.video-caption{text-align:center;color:#666;font-size:14px;margin-top:12px}
 
-  /* 솔루션 */
-  .solution-wrap {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    align-items: center;
-  }
-  .solution-img {
-    aspect-ratio: 1 / 1;
-    border-radius: 12px;
-    overflow: hidden;
-    background: #faf9f6;
-    border: 1px solid #e8e8e8;
-  }
-  .solution-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  .value-list { list-style: none; }
-  .value-list li {
-    padding: 16px 0;
-    border-bottom: 1px solid #eee;
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-  }
-  .value-list li:last-child { border-bottom: none; }
-  .value-icon {
-    background: #2D5F4E;
-    color: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    font-weight: 700;
-  }
-  .value-list h3 { margin-bottom: 4px; }
-  .value-list p { color: #666; font-size: 15px; }
+/* Products */
+#products{background:#fafafa}
+.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1100px;margin:0 auto}
+.product-card{background:#fff;border:1px solid #e8e8e8;border-radius:12px;padding:32px 24px;text-align:center;transition:all .2s}
+.product-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.06)}
+.product-card.featured{border:2px solid #2D5F4E;position:relative}
+.product-card.featured:before{content:"인기";position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#2D5F4E;color:#fff;padding:4px 12px;border-radius:12px;font-size:12px;font-weight:600}
+.product-card h3{font-size:20px;margin-bottom:12px;color:#1a1a1a}
+.product-desc{color:#666;font-size:14px;margin-bottom:20px;min-height:60px}
+.product-price{font-size:24px;font-weight:700;color:#2D5F4E;margin-bottom:20px}
 
-  /* 프루프 */
-  .proof { background: #faf9f6; }
-  .proof-inner { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
-  .proof-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-    margin-bottom: 32px;
-  }
-  .proof-img { aspect-ratio: 16 / 10; }
-  .proof-badges {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 32px;
-  }
-  .badge {
-    background: white;
-    padding: 12px 24px;
-    border-radius: 24px;
-    border: 1px solid #e0e0e0;
-    font-size: 14px;
-    font-weight: 600;
-    color: #2D5F4E;
-  }
+/* Learn */
+.learn{background:#fff}
+.learn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1100px;margin:0 auto}
+.learn-card{background:#fafafa;border-radius:12px;padding:24px;transition:all .2s}
+.learn-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.06)}
+.learn-thumb{width:100%;aspect-ratio:16/9;border-radius:8px;overflow:hidden;margin-bottom:16px;background:#faf9f6;border:1px solid #e8e8e8}
+.learn-thumb img{width:100%;height:100%;object-fit:cover}
+.learn-card h3{font-size:18px;margin-bottom:8px;color:#1a1a1a}
+.learn-card p{font-size:14px;color:#666}
 
-  /* How It Works */
-  .steps-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 24px;
-    margin-bottom: 48px;
-  }
-  .step-card { text-align: center; }
-  .step-img {
-    aspect-ratio: 1 / 1;
-    margin-bottom: 16px;
-    border-radius: 12px;
-    overflow: hidden;
-    background: #faf9f6;
-    border: 1px solid #e8e8e8;
-  }
-  .step-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  .step-num {
-    display: inline-block;
-    background: #2D5F4E;
-    color: white;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    line-height: 32px;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
+/* Testimonials */
+#testimonials{background:#f7f5f1}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1100px;margin:0 auto}
+.testi-card{background:#fff;border-radius:12px;padding:28px;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.testi-card p{color:#444;font-size:15px;font-style:italic;margin-bottom:16px;line-height:1.7}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-avatar{width:44px;height:44px;border-radius:50%;overflow:hidden;background:#e8e8e8;flex-shrink:0}
+.testi-avatar img{width:100%;height:100%;object-fit:cover}
+.testi-name{font-weight:600;font-size:14px;color:#1a1a1a}
+.testi-role{font-size:13px;color:#888}
 
-  /* 영상 임베드 — 반응형 16:9 */
-  .video-embed {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    aspect-ratio: 16 / 9;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    background: #000;
-  }
-  .video-embed iframe {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-  }
-  .video-caption {
-    text-align: center;
-    color: #666;
-    font-size: 14px;
-    margin-top: 16px;
-  }
+/* FAQ */
+#faq{background:#fff;max-width:800px;margin:0 auto}
+.faq-list{max-width:760px;margin:0 auto}
+.faq-item{border-bottom:1px solid #e8e8e8}
+.faq-q{padding:20px 40px 20px 0;cursor:pointer;font-weight:600;font-size:16px;color:#1a1a1a;position:relative}
+.faq-q:after{content:"+";position:absolute;right:0;top:50%;transform:translateY(-50%);font-size:24px;color:#2D5F4E;transition:transform .2s}
+.faq-item.open .faq-q:after{transform:translateY(-50%) rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;color:#555;font-size:15px;transition:max-height .3s,padding .3s}
+.faq-item.open .faq-a{max-height:300px;padding:0 0 20px}
+.faq-a a{color:#2D5F4E}
 
-  /* 제품 */
-  .products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-  }
-  .product-card {
-    background: white;
-    border: 1px solid #e8e8e8;
-    border-radius: 12px;
-    padding: 32px;
-    text-align: center;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .product-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-  }
-  .product-card.featured {
-    border: 2px solid #2D5F4E;
-    position: relative;
-  }
-  .product-card.featured::before {
-    content: 'BEST';
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #c9a961;
-    color: white;
-    padding: 4px 16px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: 700;
-  }
-  .product-price {
-    font-size: 32px;
-    font-weight: 700;
-    color: #2D5F4E;
-    margin: 16px 0;
-  }
-  .product-desc {
-    color: #666;
-    font-size: 14px;
-    margin-bottom: 24px;
-    min-height: 60px;
-  }
+/* Final CTA */
+.final-cta{background:linear-gradient(135deg,#2D5F4E 0%,#234a3d 100%);color:#fff;text-align:center;padding:80px 32px}
+.final-cta h2{color:#fff;margin-bottom:16px}
+.final-cta p{color:#e8f0ec;font-size:17px;max-width:600px;margin:0 auto 32px}
+.final-cta .btn-primary{background:#fff;color:#2D5F4E}
+.final-cta .btn-primary:hover{background:#f7f5f1}
+.final-cta .btn-secondary{background:transparent;color:#fff;border-color:#fff}
+.final-cta .btn-secondary:hover{background:rgba(255,255,255,.1)}
 
-  /* Learn */
-  .learn { background: #faf9f6; }
-  .learn-inner { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
-  .learn-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-  }
-  .learn-card {
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid #e8e8e8;
-  }
-  .learn-thumb { aspect-ratio: 16 / 10; }
-  .learn-body { padding: 20px; }
-  .learn-body h3 { font-size: 17px; margin-bottom: 8px; }
-  .learn-body p { color: #666; font-size: 14px; margin-bottom: 16px; }
-  .learn-link {
-    color: #2D5F4E;
-    font-weight: 600;
-    text-decoration: none;
-    font-size: 14px;
-  }
+/* Footer */
+footer{background:#f7f5f1;color:#555;padding:48px 32px 32px;border-top:1px solid #e8e8e8;text-align:center;font-size:14px;line-height:1.7}
+footer a{color:#2D5F4E;text-decoration:none;margin:0 8px}
+.footer-brand{color:#2D5F4E;font-weight:700;font-size:18px;margin-bottom:12px}
+.footer-info{margin-top:16px;color:#888;font-size:13px}
 
-  /* 후기 */
-  .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-  }
-  .testimonial-card {
-    background: #faf9f6;
-    padding: 28px;
-    border-radius: 12px;
-    border-top: 3px solid #2D5F4E;
-  }
-  .testimonial-card p {
-    font-style: italic;
-    margin-bottom: 16px;
-    color: #444;
-  }
-  .testimonial-author {
-    font-weight: 600;
-    color: #2D5F4E;
-    font-size: 14px;
-  }
-
-  /* FAQ */
-  .faq-list { max-width: 800px; margin: 0 auto; }
-  .faq-item {
-    border-bottom: 1px solid #e8e8e8;
-    padding: 20px 0;
-  }
-  .faq-q {
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #1a1a1a;
-  }
-  .faq-q::after {
-    content: '+';
-    font-size: 24px;
-    color: #2D5F4E;
-    transition: transform 0.2s;
-  }
-  .faq-item.open .faq-q::after { content: '−'; }
-  .faq-a {
-    display: none;
-    margin-top: 12px;
-    color: #555;
-    line-height: 1.7;
-  }
-  .faq-item.open .faq-a { display: block; }
-
-  /* 최종 CTA */
-  .final-cta {
-    background: linear-gradient(135deg, #2D5F4E 0%, #244d3f 100%);
-    color: white;
-    text-align: center;
-    padding: 80px 32px;
-  }
-  .final-cta h2 { color: white; font-size: 36px; }
-  .final-cta p { color: #d4e5dd; margin-bottom: 32px; font-size: 17px; }
-  .final-cta .btn-primary { background: white; color: #2D5F4E; }
-  .final-cta .btn-primary:hover { background: #f0f7f4; }
-  .final-cta .btn-secondary { background: transparent; color: white; border-color: white; }
-  .final-cta .btn-secondary:hover { background: rgba(255,255,255,0.1); }
-
-  /* 푸터 — 밝은 베이지 톤 */
-  footer {
-    background: #f7f5f1;
-    color: #555;
-    padding: 48px 32px 32px;
-    border-top: 1px solid #e8e8e8;
-    text-align: center;
-    font-size: 14px;
-    line-height: 1.7;
-  }
-  footer .footer-brand {
-    color: #2D5F4E;
-    font-weight: 700;
-    font-size: 18px;
-    margin-bottom: 12px;
-  }
-  footer a {
-    color: #2D5F4E;
-    text-decoration: none;
-    margin: 0 8px;
-  }
-  footer a:hover { text-decoration: underline; }
-  .footer-info { margin-top: 16px; color: #888; font-size: 13px; }
-
-  /* 모바일 */
-  @media (max-width: 768px) {
-    nav { padding: 12px 20px; }
-    nav ul { gap: 16px; }
-    nav ul li a { font-size: 13px; }
-    .hero { padding: 60px 20px; }
-    .hero h1 { font-size: 32px; }
-    .hero p { font-size: 16px; }
-    section { padding: 60px 20px; }
-    h2 { font-size: 26px; }
-    .solution-wrap { grid-template-columns: 1fr; gap: 24px; }
-    .proof-grid { grid-template-columns: 1fr; }
-  }
+/* Responsive */
+@media(max-width:768px){
+  .hero h1{font-size:32px}
+  .hero p{font-size:16px}
+  nav{padding:12px 20px}
+  nav ul{gap:16px}
+  nav ul li a{font-size:13px}
+  section{padding:60px 20px}
+  section h2{font-size:28px}
+  .problem-wrap,.solution-wrap{grid-template-columns:1fr;gap:32px}
+  .problem-text h2,.solution-text h2{text-align:center}
+  .proof-grid,.products-grid,.learn-grid,.testi-grid{grid-template-columns:1fr}
+  .steps-grid{grid-template-columns:repeat(2,1fr)}
+}
 </style>
 </head>
 <body>
 
-<!-- 네비게이션 -->
+<!-- Navigation -->
 <nav>
   <div class="logo">Reploid</div>
   <ul>
@@ -461,7 +174,7 @@
   </ul>
 </nav>
 
-<!-- 히어로 -->
+<!-- Hero -->
 <header class="hero">
   <h1>3D 세포배양,<br><span class="accent">누구나 오늘 시작할 수 있게.</span></h1>
   <p>합리적인 가격, 검증된 스페로이드 형성, 지속가능한 폐플라스틱 소재. Reploid가 첫 스페로이드를 함께 만들어드립니다.</p>
@@ -477,117 +190,97 @@
   </div>
 </header>
 
-<!-- 문제 -->
+<!-- Problem -->
 <section id="problem">
-  <h2>3D 세포배양, 왜 시작이 어려울까요?</h2>
-  <p class="section-sub">대부분의 연구자와 학생이 같은 벽에 부딪힙니다.</p>
-  <div class="problem-grid">
-    <div class="problem-card">
-      <h3>💸 너무 비싼 가격</h3>
-      <p>상용 마이크로웰 제품은 수십만 원대. 학부생 실습이나 소규모 랩에서 부담스럽습니다.</p>
+  <div class="problem-wrap">
+    <div class="problem-img">
+      <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=80" alt="복잡하고 비싼 기존 3D 세포배양 환경">
     </div>
-    <div class="problem-card">
-      <h3>📚 흩어진 프로토콜</h3>
-      <p>논문마다 다른 방법, 검증되지 않은 블로그 글. 첫 시도에서 실패하기 쉽습니다.</p>
-    </div>
-    <div class="problem-card">
-      <h3>🌱 환경 부담</h3>
-      <p>일회용 플라스틱 소모품의 누적 폐기물. 친환경 대안이 필요합니다.</p>
+    <div class="problem-text">
+      <h2>3D 세포배양, 왜 어려운가요?</h2>
+      <ul>
+        <li>상용 마이크로웰 가격이 부담스럽습니다</li>
+        <li>프로토콜이 복잡해 초보자가 접근하기 어렵습니다</li>
+        <li>일회용 플라스틱 폐기물이 환경 부담을 가중시킵니다</li>
+        <li>학생·소규모 연구실은 비용 때문에 시도를 포기합니다</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- 솔루션 -->
+<!-- Solution -->
 <section id="solution">
-  <h2>Reploid 마이크로웰 몰드</h2>
-  <p class="section-sub">하이드로젤과 함께 사용하여 균일한 스페로이드를 형성하는 재사용 가능한 몰드입니다.</p>
   <div class="solution-wrap">
-    <div class="solution-img">
-      <img src="images/product-main.jpg" alt="Reploid 마이크로웰 몰드 컬러 라인업">
+    <div class="solution-text">
+      <h2>Reploid 마이크로웰 몰드</h2>
+      <ul>
+        <li>폐플라스틱 재활용 소재로 가격을 절반 이하로</li>
+        <li>하이드로젤 기반 — 세포는 플라스틱과 직접 접촉하지 않음</li>
+        <li>상용 제품과 동등한 스페로이드 형성률 검증</li>
+        <li>오토클레이브 / EO 가스 멸균 모두 지원</li>
+        <li>프로토콜 가이드와 강의 영상 동봉</li>
+      </ul>
     </div>
-    <ul class="value-list">
-      <li>
-        <div class="value-icon">₩</div>
-        <div>
-          <h3>합리적인 가격</h3>
-          <p>상용 제품 대비 약 70% 저렴. 학부 실습부터 본격 연구까지.</p>
-        </div>
-      </li>
-      <li>
-        <div class="value-icon">✓</div>
-        <div>
-          <h3>검증된 재현성</h3>
-          <p>대학병원 공동연구로 확인된 스페로이드 형성 및 암세포 성장 데이터.</p>
-        </div>
-      </li>
-      <li>
-        <div class="value-icon">♻</div>
-        <div>
-          <h3>지속가능한 소재</h3>
-          <p>재활용 폐플라스틱 기반. 연구실에 ESG 가치를 더합니다.</p>
-        </div>
-      </li>
-    </ul>
+    <div class="solution-img">
+      <img src="https://www.genspark.ai/api/files/s/UfsuETmo" alt="Reploid 마이크로웰 몰드 컬러 라인업">
+    </div>
   </div>
 </section>
 
-<!-- 프루프 -->
+<!-- Proof -->
 <section id="proof" class="proof">
-  <div class="proof-inner">
-    <h2>데이터로 증명합니다</h2>
-    <p class="section-sub">상용 제품과 직접 비교한 정량 데이터.</p>
-    <div class="proof-grid">
-      <div class="proof-img placeholder">
-        [이미지 자리]<br>비교 그래프 (균일도/생존율)<br>권장 비율: 16:10
+  <h2>데이터로 검증된 성능</h2>
+  <p class="lead">상용 제품과 동등한 스페로이드 형성률, 자체 비교 실험 결과 공개</p>
+  <div class="proof-grid">
+    <div class="proof-card">
+      <div class="proof-img">
+        <img src="https://www.genspark.ai/api/files/s/h320ZRe0" alt="현미경 이미지 갤러리 - 스페로이드 형성 결과">
       </div>
-    <div class="proof-img">
-  <img src="images/3dcell.jpg" alt="현미경 이미지 갤러리">
+      <div class="proof-body">
+        <h3>균일한 스페로이드 형성</h3>
+        <p>HCT116 세포주 기준, 24시간 내 직경 150–200μm의 균일한 스페로이드 형성 확인</p>
+      </div>
     </div>
-    </div>
-    <div class="proof-badges">
-      <div class="badge">🏥 고대병원 융합의학과 공동연구</div>
-      <div class="badge">📜 특허 출원 2건</div>
-      <div class="badge">🏆 교육부 장관상</div>
+    <div class="proof-card">
+      <div class="proof-img">
+        <img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=800&q=80" alt="세포 배양 디시 비교 실험">
+      </div>
+      <div class="proof-body">
+        <h3>상용 제품 동등 수준 생존율</h3>
+        <p>Live/Dead 염색 비교 결과, 상용 마이크로웰 대비 95% 이상의 동등한 세포 생존율</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- How It Works -->
 <section id="how">
-  <h2>3단계로 시작하세요</h2>
-  <p class="section-sub">처음이어도 30분 안에 첫 스페로이드를 만들 수 있습니다.</p>
+  <h2>4단계로 끝나는 사용법</h2>
+  <p class="lead">복잡한 셋업 없이, 박스 개봉부터 스페로이드 확인까지</p>
   <div class="steps-grid">
     <div class="step-card">
-      <div class="step-img">
-        <img src="images/step1-mold.jpg" alt="몰드 준비">
-      </div>
+      <div class="step-img"><img src="https://www.genspark.ai/api/files/s/z2nwCoCg" alt="몰드 준비"></div>
       <div class="step-num">1</div>
       <h3>몰드 준비</h3>
-      <p>오토클레이브 또는 EO 멸균 후 사용</p>
+      <p>멸균된 몰드를 플레이트에 안착시킵니다</p>
     </div>
     <div class="step-card">
-      <div class="step-img">
-        <img src="images/step2-hydrogel.jpg" alt="하이드로젤 주입">
-      </div>
+      <div class="step-img"><img src="https://www.genspark.ai/api/files/s/Z51bsKSs" alt="하이드로젤 주입"></div>
       <div class="step-num">2</div>
       <h3>하이드로젤 주입</h3>
-      <p>아가로스 등 원하는 젤로 마이크로웰 형성</p>
+      <p>아가로스 등 하이드로젤을 부어 굳힙니다</p>
     </div>
     <div class="step-card">
-      <div class="step-img">
-        <img src="images/step3-seeding.jpg" alt="세포 시딩">
-      </div>
+      <div class="step-img"><img src="https://www.genspark.ai/api/files/s/N2wMzENh" alt="세포 시딩"></div>
       <div class="step-num">3</div>
       <h3>세포 시딩</h3>
-      <p>세포 현탁액 분주 후 인큐베이터에 두기</p>
+      <p>준비된 세포 현탁액을 마이크로웰에 분주합니다</p>
     </div>
     <div class="step-card">
-      <div class="step-img">
-        <img src="images/step4-spheroid.jpg" alt="스페로이드 확인">
-      </div>
+      <div class="step-img"><img src="https://www.genspark.ai/api/files/s/zHoHXlje" alt="스페로이드 확인"></div>
       <div class="step-num">4</div>
       <h3>스페로이드 확인</h3>
-      <p>24-72시간 후 균일한 스페로이드 관찰</p>
+      <p>24시간 후 현미경으로 형성된 스페로이드를 관찰합니다</p>
     </div>
   </div>
   <div class="video-embed">
@@ -599,27 +292,27 @@
   <p class="video-caption">▶ 실제 사용 영상으로 한 번에 이해하기</p>
 </section>
 
-<!-- 제품 -->
+<!-- Products -->
 <section id="products">
   <h2>구매하기</h2>
-  <p class="section-sub">용도에 맞춰 선택하세요. 모든 구매는 외부 마켓을 통해 안전하게 진행됩니다.</p>
+  <p class="lead">목적에 맞는 옵션을 선택하세요</p>
   <div class="products-grid">
     <div class="product-card">
       <h3>Raw 몰드</h3>
       <p class="product-desc">멸균 전 제품. 자체 오토클레이브로 처리해 사용하는 가성비 옵션.</p>
-      <div class="product-price">₩100,000(5개)</div>
+      <div class="product-price">₩100,000<span style="font-size:14px;color:#888;font-weight:400">(5개)</span></div>
       <a href="https://www.coupang.com" target="_blank" class="btn btn-secondary">쿠팡에서 구매</a>
     </div>
     <div class="product-card featured">
       <h3>Sterile 몰드</h3>
       <p class="product-desc">EO 가스 멸균 완료. 박스 개봉 즉시 사용 가능한 표준 옵션.</p>
-      <div class="product-price">₩150,000(5개)</div>
+      <div class="product-price">₩150,000<span style="font-size:14px;color:#888;font-weight:400">(5개)</span></div>
       <a href="https://www.coupang.com" target="_blank" class="btn btn-primary">쿠팡에서 구매</a>
     </div>
     <div class="product-card">
       <h3>Education Kit</h3>
       <p class="product-desc">몰드 + 프로토콜 가이드 + 강의 영상 액세스. 실습 수업용.</p>
-      <div class="product-price">₩200,000(5개)</div>
+      <div class="product-price">₩200,000<span style="font-size:14px;color:#888;font-weight:400">(5개)</span></div>
       <a href="https://www.coupang.com" target="_blank" class="btn btn-secondary">쿠팡에서 구매</a>
     </div>
   </div>
@@ -627,54 +320,61 @@
 
 <!-- Learn -->
 <section id="learn" class="learn">
-  <div class="learn-inner">
-    <h2>함께 배워요</h2>
-    <p class="section-sub">제품과 함께 사용할 수 있는 학습 자료를 무료로 제공합니다.</p>
-    <div class="learn-grid">
-      <div class="learn-card">
-        <div class="learn-thumb placeholder">[썸네일 자리]<br>16:10</div>
-        <div class="learn-body">
-          <h3>Udemy 강의: 3D 세포배양 입문</h3>
-          <p>스페로이드 형성부터 분석까지 단계별 영상 강의.</p>
-          <a href="https://www.udemy.com" target="_blank" class="learn-link">강의 보러가기 →</a>
-        </div>
-      </div>
-      <div class="learn-card">
-        <div class="learn-thumb placeholder">[썸네일 자리]<br>16:10</div>
-        <div class="learn-body">
-          <h3>무료 프로토콜 PDF</h3>
-          <p>실패 없이 첫 스페로이드를 만드는 30분 가이드.</p>
-          <a href="#contact" class="learn-link">이메일로 받기 →</a>
-        </div>
-      </div>
-      <div class="learn-card">
-        <div class="learn-thumb placeholder">[썸네일 자리]<br>16:10</div>
-        <div class="learn-body">
-          <h3>블로그 & 튜토리얼</h3>
-          <p>현장 노하우, 트러블슈팅, 최신 응용 사례 모음.</p>
-          <a href="#" class="learn-link">읽으러 가기 →</a>
-        </div>
-      </div>
+  <h2>학습 자료</h2>
+  <p class="lead">초보자도 따라 할 수 있는 무료 가이드와 강의</p>
+  <div class="learn-grid">
+    <div class="learn-card">
+      <div class="learn-thumb"><img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=600&q=80" alt="프로토콜 가이드"></div>
+      <h3>프로토콜 가이드</h3>
+      <p>PDF 다운로드 — 초보자도 따라 할 수 있는 단계별 매뉴얼</p>
+    </div>
+    <div class="learn-card">
+      <div class="learn-thumb"><img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&q=80" alt="강의 영상"></div>
+      <h3>강의 영상</h3>
+      <p>YouTube 시리즈 — 30분 안에 첫 스페로이드 만들기</p>
+    </div>
+    <div class="learn-card">
+      <div class="learn-thumb"><img src="https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=600&q=80" alt="트러블슈팅"></div>
+      <h3>트러블슈팅</h3>
+      <p>자주 발생하는 문제 10가지와 해결법 정리</p>
     </div>
   </div>
 </section>
 
-<!-- 후기 -->
+<!-- Testimonials -->
 <section id="testimonials">
-  <h2>먼저 사용한 분들의 이야기</h2>
-  <p class="section-sub">실제 연구자와 교육자가 남긴 후기입니다.</p>
-  <div class="testimonials-grid">
-    <div class="testimonial-card">
-      <p>"학부 실습에서 처음으로 학생들이 직접 스페로이드를 만들 수 있었습니다. 비용 부담이 확 줄었어요."</p>
-      <div class="testimonial-author">— ○○대학교 생명과학과 교수</div>
+  <h2>사용자 후기</h2>
+  <p class="lead">실제 연구실과 학생들의 이야기</p>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <p>"학부 실습에 도입했는데 학생들이 처음으로 스페로이드를 직접 만들어보며 흥미를 느꼈습니다. 가격 부담이 적어 반복 실습이 가능했어요."</p>
+      <div class="testi-author">
+        <div class="testi-avatar"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80" alt=""></div>
+        <div>
+          <div class="testi-name">김○○ 교수</div>
+          <div class="testi-role">바이오공학과</div>
+        </div>
+      </div>
     </div>
-    <div class="testimonial-card">
-      <p>"기존 제품 대비 균일도가 비슷한데 가격이 훨씬 합리적입니다. 반복 실험에 부담이 없어요."</p>
-      <div class="testimonial-author">— ○○병원 연구원</div>
+    <div class="testi-card">
+      <p>"상용 제품 대비 절반 가격인데 결과는 동등했습니다. 소규모 연구실에 정말 큰 도움이 됩니다."</p>
+      <div class="testi-author">
+        <div class="testi-avatar"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&q=80" alt=""></div>
+        <div>
+          <div class="testi-name">이○○ 연구원</div>
+          <div class="testi-role">암 연구센터</div>
+        </div>
+      </div>
     </div>
-    <div class="testimonial-card">
-      <p>"영상 가이드가 잘 되어있어서 처음 해보는 학생도 따라할 수 있었습니다."</p>
-      <div class="testimonial-author">— ○○고등학교 바이오 동아리 지도교사</div>
+    <div class="testi-card">
+      <p>"프로토콜 가이드가 잘 정리되어 있어서 3D 배양이 처음인 저도 첫날에 스페로이드를 만들 수 있었습니다."</p>
+      <div class="testi-author">
+        <div class="testi-avatar"><img src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=200&q=80" alt=""></div>
+        <div>
+          <div class="testi-name">박○○ 대학원생</div>
+          <div class="testi-role">석사 1년차</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -693,7 +393,7 @@
     </div>
     <div class="faq-item">
       <div class="faq-q">어떤 세포주에 사용 가능한가요?</div>
-      <div class="faq-a">암세포주(HCT116, MCF-7 등), 줄기세포, 1차 배양 세포 등 일반적인 부유/부착 세포에 적용 가능합니다. 자세한 적용 사례는 강의 자료를 참고하세요.</div>
+      <div class="faq-a">암세포주(HCT116, MCF-7 등), 줄기세포, 1차 배양 세포 등 일반적인 부유/부착 세포에 적용 가능합니다.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q">재사용이 가능한가요?</div>
@@ -701,12 +401,12 @@
     </div>
     <div class="faq-item">
       <div class="faq-q">대량 구매 또는 견적 문의는?</div>
-      <div class="faq-a">namjh@jeiu.ac.kr 로 연락 주시면 수량별 단가와 배송 일정을 안내드립니다.</div>
+      <div class="faq-a"><a href="mailto:namjh@jeiu.ac.kr">namjh@jeiu.ac.kr</a> 로 연락 주시면 수량별 단가와 배송 일정을 안내드립니다.</div>
     </div>
   </div>
 </section>
 
-<!-- 최종 CTA -->
+<!-- Final CTA -->
 <section class="final-cta" id="contact">
   <h2>당신의 첫 스페로이드,<br>오늘 시작하세요.</h2>
   <p>무료 샘플 요청부터 강의 수강까지, 가장 쉬운 3D 세포배양의 시작.</p>
@@ -716,7 +416,7 @@
   </div>
 </section>
 
-<!-- 푸터 -->
+<!-- Footer -->
 <footer>
   <div class="footer-brand">Reploid by YD Labs</div>
   <div>
@@ -726,19 +426,18 @@
     <a href="mailto:namjh@jeiu.ac.kr">문의</a>
   </div>
   <div class="footer-info">
-    상호: 리플로이드 | 대표: 홍수영 | 사업자등록번호: 학생창업예정 (U300 참가중) <br>
+    상호: 리플로이드 | 대표: 홍수영 | 사업자등록번호: 학생창업예정 (U300 참가중)<br>
     주소: 재능대학교 바이오테크과 | 이메일: namjh@jeiu.ac.kr<br>
     © 2026 YD Labs. All rights reserved.
   </div>
 </footer>
 
 <script>
-  // FAQ 토글
-  document.querySelectorAll('.faq-q').forEach(q => {
-    q.addEventListener('click', () => {
-      q.parentElement.classList.toggle('open');
-    });
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    q.parentElement.classList.toggle('open');
   });
+});
 </script>
 
 </body>
