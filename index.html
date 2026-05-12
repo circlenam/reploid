@@ -183,30 +183,30 @@
   .value-list p { color: #666; font-size: 15px; }
 
   /* 프루프 */
-.proof { background: #faf9f6; }
-.proof-inner { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
-.proof-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-  margin-bottom: 32px;
-}
-.proof-img {
-  aspect-ratio: 3 / 2;
-  border-radius: 12px;
-  overflow: hidden;
-  background: #ffffff;
-  border: 1px solid #e8e8e8;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.proof-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
+  .proof { background: #faf9f6; }
+  .proof-inner { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+  .proof-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-bottom: 32px;
+  }
+  .proof-img {
+    aspect-ratio: 3 / 2;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid #e8e8e8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .proof-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
   .proof-badges {
     display: flex;
     gap: 16px;
@@ -346,7 +346,17 @@
     overflow: hidden;
     border: 1px solid #e8e8e8;
   }
-  .learn-thumb { aspect-ratio: 16 / 10; }
+  .learn-thumb {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: #faf9f6;
+  }
+  .learn-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
   .learn-body { padding: 20px; }
   .learn-body h3 { font-size: 17px; margin-bottom: 8px; }
   .learn-body p { color: #666; font-size: 14px; margin-bottom: 16px; }
@@ -647,7 +657,9 @@
     <p class="section-sub">제품과 함께 사용할 수 있는 학습 자료를 무료로 제공합니다.</p>
     <div class="learn-grid">
       <div class="learn-card">
-        <div class="learn-thumb placeholder">[썸네일 자리]<br>16:10</div>
+        <div class="learn-thumb">
+          <img src="images/learn-udemy.jpg" alt="Udemy 강의 - 3D 세포배양 입문">
+        </div>
         <div class="learn-body">
           <h3>Udemy 강의: 3D 세포배양 입문</h3>
           <p>스페로이드 형성부터 분석까지 단계별 영상 강의.</p>
@@ -655,7 +667,9 @@
         </div>
       </div>
       <div class="learn-card">
-        <div class="learn-thumb placeholder">[썸네일 자리]<br>16:10</div>
+        <div class="learn-thumb">
+          <img src="images/learn-pdf.jpg" alt="무료 프로토콜 PDF 가이드">
+        </div>
         <div class="learn-body">
           <h3>무료 프로토콜 PDF</h3>
           <p>실패 없이 첫 스페로이드를 만드는 30분 가이드.</p>
@@ -663,7 +677,9 @@
         </div>
       </div>
       <div class="learn-card">
-        <div class="learn-thumb placeholder">[썸네일 자리]<br>16:10</div>
+        <div class="learn-thumb">
+          <img src="images/learn-blog.jpg" alt="블로그 & 튜토리얼">
+        </div>
         <div class="learn-body">
           <h3>블로그 & 튜토리얼</h3>
           <p>현장 노하우, 트러블슈팅, 최신 응용 사례 모음.</p>
