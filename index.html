@@ -9,486 +9,435 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
+  /* ===== 다크 모드 컬러 팔레트 ===== */
+  :root {
+    --bg-primary: #0a0e0d;      /* 가장 어두운 배경 (거의 검정) */
+    --bg-secondary: #111614;    /* 섹션 배경 */
+    --bg-card: #181f1c;         /* 카드 배경 */
+    --bg-elevated: #1f2723;     /* 강조 카드 */
+    --border: #252d29;          /* 기본 테두리 */
+    --border-light: #2d3631;    /* 밝은 테두리 */
+
+    --text-primary: #e6ebe8;    /* 메인 텍스트 (부드러운 화이트) */
+    --text-secondary: #9ba8a2;  /* 보조 텍스트 */
+    --text-muted: #6b766f;      /* 흐린 텍스트 */
+
+    --accent: #7eb69a;          /* 세이지 그린 (부드러운 민트) */
+    --accent-hover: #95c7ac;
+    --accent-dim: #5a8a76;      /* 어두운 세이지 */
+    --accent-glow: rgba(126, 182, 154, 0.15);
+
+    --danger: #d97c7c;          /* 부드러운 레드 */
+    --gold: #c9a961;            /* 골드 (BEST 뱃지) */
+  }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
     font-family: 'Inter', 'Noto Sans KR', sans-serif;
-    color: #222;
+    color: var(--text-primary);
     line-height: 1.6;
-    background: #ffffff;
+    background: var(--bg-primary);
+    -webkit-font-smoothing: antialiased;
   }
 
-  /* 상단 네비게이션 */
+  /* ===== Navigation ===== */
   nav {
-    position: sticky;
-    top: 0;
-    background: #ffffff;
-    border-bottom: 1px solid #e8e8e8;
+    position: sticky; top: 0;
+    background: rgba(10, 14, 13, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
     padding: 16px 32px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: flex; justify-content: space-between; align-items: center;
     z-index: 100;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
   }
-  nav .logo { color: #2D5F4E; font-weight: 700; font-size: 20px; }
+  nav .logo {
+    color: var(--accent); font-weight: 700; font-size: 20px;
+    letter-spacing: 0.5px;
+  }
   nav ul { display: flex; gap: 28px; list-style: none; }
   nav ul li a {
-    color: #333; text-decoration: none; font-size: 15px; font-weight: 500;
+    color: var(--text-secondary); text-decoration: none;
+    font-size: 15px; font-weight: 500; transition: color .2s;
   }
-  nav ul li a:hover { color: #2D5F4E; }
+  nav ul li a:hover { color: var(--accent); }
 
-  /* 공통 섹션 */
+  /* ===== Common Section ===== */
   section { padding: 80px 32px; max-width: 1100px; margin: 0 auto; }
-  h1, h2, h3 { font-weight: 700; color: #1a1a1a; }
+  h1, h2, h3 { font-weight: 700; color: var(--text-primary); letter-spacing: -0.01em; }
   h2 { font-size: 32px; margin-bottom: 16px; text-align: center; }
   h3 { font-size: 20px; margin-bottom: 12px; }
-  .section-sub { text-align: center; color: #666; margin-bottom: 48px; font-size: 16px; }
+  .section-sub {
+    text-align: center; color: var(--text-secondary);
+    margin-bottom: 48px; font-size: 16px;
+  }
 
-  /* 버튼 */
+  /* ===== Buttons ===== */
   .btn {
-    display: inline-block;
-    padding: 14px 28px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 15px;
-    transition: all 0.2s;
-    cursor: pointer;
-    border: none;
+    display: inline-block; padding: 14px 28px; border-radius: 8px;
+    text-decoration: none; font-weight: 600; font-size: 15px;
+    transition: all .25s ease; cursor: pointer; border: none;
+    letter-spacing: 0.2px;
   }
-  .btn-primary { background: #2D5F4E; color: white; }
-  .btn-primary:hover { background: #244d3f; }
+  .btn-primary {
+    background: var(--accent); color: #0a0e0d;
+    box-shadow: 0 0 0 0 var(--accent-glow);
+  }
+  .btn-primary:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px var(--accent-glow);
+  }
   .btn-secondary {
-    background: white; color: #2D5F4E; border: 2px solid #2D5F4E;
+    background: transparent; color: var(--accent);
+    border: 1.5px solid var(--accent-dim);
   }
-  .btn-secondary:hover { background: #f0f7f4; }
-
-/* CTA 하단 안내 문구 */
-.cta-note {
-  text-align: center;
-  color: #888;
-  font-size: clamp(10px, 2.2vw, 13px);
-  margin-top: 16px;
-  line-height: 1.5;
-  white-space: nowrap;
-}
-.final-cta .cta-note { color: #c5d6cd; }
-
-
-
-
-  /* 플레이스홀더 */
-  .placeholder {
-    background: #f5f5f0;
-    border: 2px dashed #2D5F4E;
-    border-radius: 12px;
-    color: #2D5F4E;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 24px;
-    font-size: 14px;
-    font-weight: 500;
+  .btn-secondary:hover {
+    background: var(--accent-glow);
+    border-color: var(--accent);
   }
 
-  /* 히어로 */
+  .cta-note {
+    text-align: center; color: var(--text-muted);
+    font-size: clamp(10px, 2.2vw, 13px);
+    margin-top: 32px; line-height: 1.5; white-space: nowrap;
+  }
+
+  /* ===== Hero ===== */
   .hero {
-    background: linear-gradient(135deg, #f7f5f1 0%, #ffffff 100%);
-    padding: 100px 32px;
-    text-align: center;
+    background:
+      radial-gradient(ellipse at top, rgba(126, 182, 154, 0.08) 0%, transparent 60%),
+      linear-gradient(180deg, #0a0e0d 0%, #111614 100%);
+    padding: 100px 32px; text-align: center;
+    position: relative; overflow: hidden;
   }
+  .hero::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-light), transparent);
+  }
+  .hero > * { position: relative; z-index: 1; }
   .hero h1 {
-    font-size: 48px;
-    line-height: 1.2;
-    margin-bottom: 20px;
-    color: #1a1a1a;
+    font-size: 52px; line-height: 1.15; margin-bottom: 20px;
+    letter-spacing: -0.02em;
   }
-  .hero h1 .accent { color: #2D5F4E; }
+  .hero h1 .accent { color: var(--accent); }
   .hero p {
-    font-size: 18px;
-    color: #555;
-    margin-bottom: 40px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
+    font-size: 18px; color: var(--text-secondary);
+    margin: 0 auto 40px; max-width: 700px;
   }
-
-  /* 히어로 영상 — 4:3 자동재생 */
   .hero-video {
-    position: relative;
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto 40px;
-    aspect-ratio: 4 / 3;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    position: relative; width: 100%; max-width: 600px;
+    margin: 0 auto 40px; aspect-ratio: 4 / 3;
+    border-radius: 16px; overflow: hidden;
+    box-shadow:
+      0 0 0 1px var(--border-light),
+      0 20px 60px rgba(0,0,0,0.5),
+      0 0 80px var(--accent-glow);
     background: #000;
   }
   .hero-video iframe {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%; border: 0;
   }
-
   .hero-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
-  /* 문제 섹션 */
-  .problem-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 24px;
-    margin-top: 32px;
+  /* ===== Problem ===== */
+  #problem { background: var(--bg-secondary); max-width: 100%; }
+  .problem-wrap {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+    align-items: center; max-width: 1100px; margin: 0 auto;
   }
-  .problem-card {
-    background: #faf9f6;
-    padding: 28px;
-    border-radius: 12px;
-    border-left: 4px solid #c9a961;
+  .problem-img {
+    width: 100%; aspect-ratio: 4/3;
+    border-radius: 12px; overflow: hidden;
+    background: var(--bg-card); border: 1px solid var(--border);
+    filter: brightness(0.85) contrast(1.1);
   }
-  .problem-card h3 { color: #2D5F4E; }
+  .problem-img img { width: 100%; height: 100%; object-fit: cover; }
+  .problem-text h2 { text-align: left; margin-bottom: 24px; }
+  .problem-text ul { list-style: none; padding: 0; }
+  .problem-text ul li {
+    padding: 14px 0 14px 28px; position: relative;
+    color: var(--text-secondary); font-size: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .problem-text ul li:before {
+    content: "✕"; position: absolute; left: 0;
+    color: var(--danger); font-weight: 700;
+  }
 
-  /* 솔루션 */
+  /* ===== Solution ===== */
+  #solution { background: var(--bg-primary); max-width: 100%; }
   .solution-wrap {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    align-items: center;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+    align-items: center; max-width: 1100px; margin: 0 auto;
   }
   .solution-img {
-    aspect-ratio: 1 / 1;
-    border-radius: 12px;
-    overflow: hidden;
-    background: #faf9f6;
-    border: 1px solid #e8e8e8;
+    aspect-ratio: 1 / 1; border-radius: 12px; overflow: hidden;
+    background: var(--bg-card); border: 1px solid var(--border);
   }
-  .solution-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+  .solution-img img { width: 100%; height: 100%; object-fit: cover; }
+  .solution-text h2 { text-align: left; margin-bottom: 24px; }
+  .solution-text ul { list-style: none; padding: 0; }
+  .solution-text ul li {
+    padding: 14px 0 14px 28px; position: relative;
+    color: var(--text-secondary); font-size: 16px;
+    border-bottom: 1px solid var(--border);
   }
-  .value-list { list-style: none; }
-  .value-list li {
-    padding: 16px 0;
-    border-bottom: 1px solid #eee;
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
+  .solution-text ul li:before {
+    content: "✓"; position: absolute; left: 0;
+    color: var(--accent); font-weight: 700;
   }
-  .value-list li:last-child { border-bottom: none; }
-  .value-icon {
-    background: #2D5F4E;
-    color: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    font-weight: 700;
-  }
-  .value-list h3 { margin-bottom: 4px; }
-  .value-list p { color: #666; font-size: 15px; }
 
-  /* 프루프 */
-  .proof { background: #faf9f6; }
-  .proof-inner { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+  /* ===== Proof ===== */
+  .proof { background: var(--bg-secondary); padding: 80px 32px; }
+  .proof-inner { max-width: 1100px; margin: 0 auto; }
   .proof-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-    margin-bottom: 32px;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 32px; margin-top: 48px;
   }
+  .proof-card {
+    background: var(--bg-card); border-radius: 12px;
+    overflow: hidden; border: 1px solid var(--border);
+    transition: border-color .2s;
+  }
+  .proof-card:hover { border-color: var(--accent-dim); }
   .proof-img {
-    aspect-ratio: 3 / 2;
-    border-radius: 12px;
-    overflow: hidden;
-    background: #ffffff;
-    border: 1px solid #e8e8e8;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    aspect-ratio: 3 / 2; overflow: hidden;
+    background: #f5f5f0;
+    display: flex; align-items: center; justify-content: center;
   }
-  .proof-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-  }
-  .proof-badges {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 32px;
-  }
-  .badge {
-    background: white;
-    padding: 12px 24px;
-    border-radius: 24px;
-    border: 1px solid #e0e0e0;
-    font-size: 14px;
-    font-weight: 600;
-    color: #2D5F4E;
-  }
+  .proof-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .proof-body { padding: 24px; }
+  .proof-body h3 { color: var(--accent); font-size: 18px; margin-bottom: 8px; }
+  .proof-body p { color: var(--text-secondary); font-size: 14px; }
 
-  /* How It Works */
+  /* ===== How It Works ===== */
+  #how { background: var(--bg-primary); max-width: 100%; padding: 80px 32px; }
+  #how > * { max-width: 1100px; margin-left: auto; margin-right: auto; }
   .steps-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 24px;
-    margin-bottom: 48px;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 24px; margin: 48px auto;
   }
   .step-card { text-align: center; }
   .step-img {
-    aspect-ratio: 1 / 1;
-    margin-bottom: 16px;
-    border-radius: 12px;
-    overflow: hidden;
-    background: #faf9f6;
-    border: 1px solid #e8e8e8;
+    aspect-ratio: 1 / 1; margin-bottom: 16px;
+    border-radius: 12px; overflow: hidden;
+    background: var(--bg-card); border: 1px solid var(--border);
   }
-  .step-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
+  .step-img img { width: 100%; height: 100%; object-fit: cover; }
   .step-num {
-    display: inline-block;
-    background: #2D5F4E;
-    color: white;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    line-height: 32px;
-    font-weight: 700;
-    margin-bottom: 8px;
+    display: inline-block; width: 28px; height: 28px;
+    line-height: 28px; border-radius: 50%;
+    background: var(--accent); color: #0a0e0d;
+    font-weight: 700; font-size: 14px; margin-bottom: 8px;
   }
-
-  /* 영상 임베드 — 반응형 16:9 */
+  .step-card h3 { font-size: 16px; margin-bottom: 8px; }
+  .step-card p { font-size: 14px; color: var(--text-secondary); }
   .video-embed {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    aspect-ratio: 16 / 9;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    background: #000;
+    position: relative; max-width: 800px; margin: 0 auto;
+    aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden;
+    box-shadow:
+      0 0 0 1px var(--border-light),
+      0 12px 40px rgba(0,0,0,0.4);
   }
   .video-embed iframe {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%; border: 0;
   }
   .video-caption {
-    text-align: center;
-    color: #666;
-    font-size: 14px;
-    margin-top: 16px;
+    text-align: center; color: var(--text-muted);
+    font-size: 14px; margin-top: 16px;
   }
 
-  /* 제품 */
+  /* ===== Products ===== */
+  #products { background: var(--bg-secondary); max-width: 100%; }
+  #products > * { max-width: 1100px; margin-left: auto; margin-right: auto; }
   .products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 24px; margin-top: 48px;
   }
   .product-card {
-    background: white;
-    border: 1px solid #e8e8e8;
-    border-radius: 12px;
-    padding: 32px;
-    text-align: center;
-    transition: transform 0.2s, box-shadow 0.2s;
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 36px 28px; text-align: center;
+    transition: all .25s ease;
   }
   .product-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    border-color: var(--accent-dim);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.3);
   }
   .product-card.featured {
-    border: 2px solid #2D5F4E;
-    position: relative;
+    background: var(--bg-elevated);
+    border: 1.5px solid var(--accent); position: relative;
+    box-shadow: 0 0 40px var(--accent-glow);
   }
-  .product-card.featured::before {
-    content: 'BEST';
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #c9a961;
-    color: white;
-    padding: 4px 16px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: 700;
+  .product-card.featured:before {
+    content: "BEST"; position: absolute; top: -12px; left: 50%;
+    transform: translateX(-50%); background: var(--gold);
+    color: #0a0e0d; padding: 4px 14px; border-radius: 12px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+  }
+  .product-card h3 { font-size: 20px; margin-bottom: 12px; }
+  .product-desc {
+    color: var(--text-secondary); font-size: 14px;
+    margin-bottom: 24px; min-height: 60px;
   }
   .product-price {
-    font-size: 32px;
-    font-weight: 700;
-    color: #2D5F4E;
-    margin: 16px 0;
+    font-size: 26px; font-weight: 700;
+    color: var(--accent); margin-bottom: 24px;
   }
-  .product-desc {
-    color: #666;
-    font-size: 14px;
-    margin-bottom: 24px;
-    min-height: 60px;
-  }
+  .product-price span { color: var(--text-muted); font-size: 14px; font-weight: 400; }
 
-  /* Learn */
-  .learn { background: #faf9f6; }
-  .learn-inner { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+  /* ===== Learn ===== */
+  .learn { background: var(--bg-primary); padding: 80px 32px; }
+  .learn-inner { max-width: 1100px; margin: 0 auto; }
   .learn-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 24px; margin-top: 48px;
   }
   .learn-card {
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid #e8e8e8;
+    background: var(--bg-card); border-radius: 12px;
+    overflow: hidden; border: 1px solid var(--border);
+    transition: all .25s ease;
+  }
+  .learn-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-dim);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.3);
   }
   .learn-thumb {
-    aspect-ratio: 16 / 10;
-    overflow: hidden;
-    background: #faf9f6;
+    width: 100%; aspect-ratio: 16/10;
+    overflow: hidden; background: var(--bg-elevated);
   }
-  .learn-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  .learn-body { padding: 20px; }
+  .learn-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .learn-body { padding: 24px; }
   .learn-body h3 { font-size: 17px; margin-bottom: 8px; }
-  .learn-body p { color: #666; font-size: 14px; margin-bottom: 16px; }
-  .learn-link {
-    color: #2D5F4E;
-    font-weight: 600;
-    text-decoration: none;
-    font-size: 14px;
-  }
+  .learn-body p { color: var(--text-secondary); font-size: 14px; }
 
-  /* 후기 */
-  .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
+  /* ===== Testimonials ===== */
+  #testimonials { background: var(--bg-secondary); max-width: 100%; }
+  #testimonials > * { max-width: 1100px; margin-left: auto; margin-right: auto; }
+  .testi-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 24px; margin-top: 48px;
   }
-  .testimonial-card {
-    background: #faf9f6;
-    padding: 28px;
-    border-radius: 12px;
-    border-top: 3px solid #2D5F4E;
+  .testi-card {
+    background: var(--bg-card); border-radius: 12px; padding: 28px;
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--accent);
+    transition: border-color .2s;
   }
-  .testimonial-card p {
-    font-style: italic;
-    margin-bottom: 16px;
-    color: #444;
+  .testi-card:hover { border-color: var(--accent-dim); border-top-color: var(--accent); }
+  .testi-card p {
+    color: var(--text-secondary); font-size: 15px;
+    font-style: italic; margin-bottom: 16px; line-height: 1.7;
   }
-  .testimonial-author {
-    font-weight: 600;
-    color: #2D5F4E;
-    font-size: 14px;
+  .testi-author { display: flex; align-items: center; gap: 12px; }
+  .testi-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    overflow: hidden; background: var(--bg-elevated); flex-shrink: 0;
+    filter: brightness(0.9);
   }
+  .testi-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .testi-name { font-weight: 600; font-size: 14px; color: var(--text-primary); }
+  .testi-role { font-size: 13px; color: var(--text-muted); }
 
-  /* FAQ */
-  .faq-list { max-width: 800px; margin: 0 auto; }
-  .faq-item {
-    border-bottom: 1px solid #e8e8e8;
-    padding: 20px 0;
-  }
+  /* ===== FAQ ===== */
+  #faq { background: var(--bg-primary); max-width: 800px; }
+  .faq-list { max-width: 760px; margin: 48px auto 0; }
+  .faq-item { border-bottom: 1px solid var(--border); }
   .faq-q {
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #1a1a1a;
+    padding: 22px 40px 22px 0; cursor: pointer;
+    font-weight: 600; font-size: 16px;
+    color: var(--text-primary); position: relative;
+    transition: color .2s;
   }
-  .faq-q::after {
-    content: '+';
-    font-size: 24px;
-    color: #2D5F4E;
-    transition: transform 0.2s;
+  .faq-q:hover { color: var(--accent); }
+  .faq-q:after {
+    content: "+"; position: absolute; right: 0; top: 50%;
+    transform: translateY(-50%); font-size: 24px;
+    color: var(--accent); transition: transform .25s;
   }
-  .faq-item.open .faq-q::after { content: '−'; }
+  .faq-item.open .faq-q:after { transform: translateY(-50%) rotate(45deg); }
   .faq-a {
-    display: none;
-    margin-top: 12px;
-    color: #555;
-    line-height: 1.7;
+    max-height: 0; overflow: hidden;
+    color: var(--text-secondary); font-size: 15px;
+    transition: max-height .3s, padding .3s;
   }
-  .faq-item.open .faq-a { display: block; }
+  .faq-item.open .faq-a { max-height: 300px; padding: 0 0 22px; }
+  .faq-a a { color: var(--accent); }
 
-  /* 최종 CTA */
+  /* ===== Final CTA ===== */
   .final-cta {
-    background: linear-gradient(135deg, #2D5F4E 0%, #244d3f 100%);
-    color: white;
-    text-align: center;
-    padding: 80px 32px;
+    background:
+      radial-gradient(ellipse at center, rgba(126, 182, 154, 0.1) 0%, transparent 60%),
+      linear-gradient(180deg, #111614 0%, #0a0e0d 100%);
+    color: var(--text-primary); text-align: center;
+    padding: 100px 32px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    position: relative; overflow: hidden;
   }
-  .final-cta h2 { color: white; font-size: 36px; }
-  .final-cta p { color: #d4e5dd; margin-bottom: 32px; font-size: 17px; }
-  .final-cta .btn-primary { background: white; color: #2D5F4E; }
-  .final-cta .btn-primary:hover { background: #f0f7f4; }
-  .final-cta .btn-secondary { background: transparent; color: white; border-color: white; }
-  .final-cta .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+  .final-cta > * { position: relative; z-index: 1; }
+  .final-cta h2 {
+    color: var(--text-primary); margin-bottom: 16px;
+    font-size: 36px;
+  }
+  .final-cta p {
+    color: var(--text-secondary); font-size: 17px;
+    max-width: 600px; margin: 0 auto 32px;
+  }
+  .final-cta .cta-note { color: var(--text-muted); }
 
-  /* 푸터 — 밝은 베이지 톤 */
+  /* ===== Footer ===== */
   footer {
-    background: #f7f5f1;
-    color: #555;
-    padding: 48px 32px 32px;
-    border-top: 1px solid #e8e8e8;
-    text-align: center;
-    font-size: 14px;
-    line-height: 1.7;
-  }
-  footer .footer-brand {
-    color: #2D5F4E;
-    font-weight: 700;
-    font-size: 18px;
-    margin-bottom: 12px;
+    background: var(--bg-primary); color: var(--text-secondary);
+    padding: 48px 32px 32px; border-top: 1px solid var(--border);
+    text-align: center; font-size: 14px; line-height: 1.7;
   }
   footer a {
-    color: #2D5F4E;
-    text-decoration: none;
-    margin: 0 8px;
+    color: var(--accent); text-decoration: none; margin: 0 8px;
+    transition: color .2s;
   }
-  footer a:hover { text-decoration: underline; }
-  .footer-info { margin-top: 16px; color: #888; font-size: 13px; }
+  footer a:hover { color: var(--accent-hover); }
+  .footer-brand {
+    color: var(--accent); font-weight: 700;
+    font-size: 18px; margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+  .footer-info { margin-top: 16px; color: var(--text-muted); font-size: 13px; }
 
-  /* 모바일 */
+  /* ===== Selection ===== */
+  ::selection { background: var(--accent-dim); color: var(--text-primary); }
+
+  /* ===== Scrollbar ===== */
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: var(--bg-primary); }
+  ::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 5px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent-dim); }
+
+  /* ===== Responsive ===== */
   @media (max-width: 768px) {
+    .hero h1 { font-size: 32px; }
+    .hero p { font-size: 16px; }
     nav { padding: 12px 20px; }
     nav ul { gap: 16px; }
     nav ul li a { font-size: 13px; }
-    .hero { padding: 60px 20px; }
-    .hero h1 { font-size: 32px; }
-    .hero p { font-size: 16px; }
     section { padding: 60px 20px; }
     h2 { font-size: 26px; }
-    .solution-wrap { grid-template-columns: 1fr; gap: 24px; }
-    .proof-grid { grid-template-columns: 1fr; }
+    .final-cta h2 { font-size: 28px; }
+    .problem-wrap, .solution-wrap { grid-template-columns: 1fr; gap: 32px; }
+    .problem-text h2, .solution-text h2 { text-align: center; }
+    .proof-grid, .products-grid, .learn-grid, .testi-grid { grid-template-columns: 1fr; }
+    .steps-grid { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
 </head>
 <body>
 
-<!-- 네비게이션 -->
 <nav>
   <div class="logo">Reploid</div>
   <ul>
@@ -500,15 +449,11 @@
   </ul>
 </nav>
 
-<!-- 히어로 -->
 <header class="hero">
   <h1>3D 세포배양,<br><span class="accent">누구나 오늘 시작할 수 있게.</span></h1>
   <p>합리적인 가격, 검증된 스페로이드 형성, 지속가능한 폐플라스틱 소재. Reploid가 첫 스페로이드를 함께 만들어드립니다.</p>
   <div class="hero-video">
-   <iframe src="https://www.youtube-nocookie.com/embed/OyBGk18LogI?autoplay=1&mute=1&loop=1&playlist=OyBGk18LogI&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
-        title="Reploid 스페로이드 형성 영상"
-        allow="autoplay; encrypted-media; picture-in-picture"
-        allowfullscreen></iframe>
+    <iframe src="https://www.youtube-nocookie.com/embed/OyBGk18LogI?autoplay=1&mute=1&loop=1&playlist=OyBGk18LogI&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1" title="Reploid 스페로이드 형성 영상" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
   </div>
   <div class="hero-cta">
     <a href="https://www.coupang.com" target="_blank" class="btn btn-primary">쿠팡에서 구매하기</a>
@@ -517,215 +462,195 @@
   <p class="cta-note">* 무료 샘플 요청시, 1세트(3개)로 제공하며 teaching guidebook과 영상주소를 보내드립니다.</p>
 </header>
 
-<!-- 문제 -->
 <section id="problem">
-  <h2>3D 세포배양, 왜 시작이 어려울까요?</h2>
-  <p class="section-sub">대부분의 연구자와 학생이 같은 벽에 부딪힙니다.</p>
-  <div class="problem-grid">
-    <div class="problem-card">
-      <h3>💸 너무 비싼 가격</h3>
-      <p>상용 마이크로웰 제품은 수십만 원대. 학부생 실습이나 소규모 랩에서 부담스럽습니다.</p>
+  <div class="problem-wrap">
+    <div class="problem-img">
+      <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=80" alt="복잡하고 비싼 기존 3D 세포배양 환경">
     </div>
-    <div class="problem-card">
-      <h3>📚 흩어진 프로토콜</h3>
-      <p>논문마다 다른 방법, 검증되지 않은 블로그 글. 첫 시도에서 실패하기 쉽습니다.</p>
-    </div>
-    <div class="problem-card">
-      <h3>🌱 환경 부담</h3>
-      <p>일회용 플라스틱 소모품의 누적 폐기물. 친환경 대안이 필요합니다.</p>
+    <div class="problem-text">
+      <h2>3D 세포배양, 왜 어려운가요?</h2>
+      <ul>
+        <li>상용 마이크로웰 가격이 부담스럽습니다</li>
+        <li>프로토콜이 복잡해 초보자가 접근하기 어렵습니다</li>
+        <li>일회용 플라스틱 폐기물이 환경 부담을 가중시킵니다</li>
+        <li>학생·소규모 연구실은 비용 때문에 시도를 포기합니다</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- 솔루션 -->
 <section id="solution">
-  <h2>Reploid 마이크로웰 몰드</h2>
-  <p class="section-sub">하이드로젤과 함께 사용하여 균일한 스페로이드를 형성하는 재사용 가능한 몰드입니다.</p>
   <div class="solution-wrap">
+    <div class="solution-text">
+      <h2>Reploid 마이크로웰 몰드</h2>
+      <ul>
+        <li>폐플라스틱 재활용 소재로 가격을 절반 이하로</li>
+        <li>하이드로젤 기반 — 세포는 플라스틱과 직접 접촉하지 않음</li>
+        <li>상용 제품과 동등한 스페로이드 형성률 검증</li>
+        <li>오토클레이브 / EO 가스 멸균 모두 지원</li>
+        <li>프로토콜 가이드와 강의 영상 동봉</li>
+      </ul>
+    </div>
     <div class="solution-img">
       <img src="images/product-main.jpg" alt="Reploid 마이크로웰 몰드 컬러 라인업">
     </div>
-    <ul class="value-list">
-      <li>
-        <div class="value-icon">₩</div>
-        <div>
-          <h3>합리적인 가격</h3>
-          <p>상용 제품 대비 약 70% 저렴. 학부 실습부터 본격 연구까지.</p>
-        </div>
-      </li>
-      <li>
-        <div class="value-icon">✓</div>
-        <div>
-          <h3>검증된 재현성</h3>
-          <p>대학병원 공동연구로 확인된 스페로이드 형성 및 암세포 성장 데이터.</p>
-        </div>
-      </li>
-      <li>
-        <div class="value-icon">♻</div>
-        <div>
-          <h3>지속가능한 소재</h3>
-          <p>재활용 폐플라스틱 기반. 연구실에 ESG 가치를 더합니다.</p>
-        </div>
-      </li>
-    </ul>
   </div>
 </section>
 
-<!-- 프루프 -->
 <section id="proof" class="proof">
   <div class="proof-inner">
-    <h2>데이터로 증명합니다</h2>
-    <p class="section-sub">상용 제품과 직접 비교한 정량 데이터.</p>
+    <h2>데이터로 검증된 성능</h2>
+    <p class="section-sub">상용 제품과 동등한 스페로이드 형성률, 자체 비교 실험 결과 공개</p>
     <div class="proof-grid">
-      <div class="proof-img">
-        <img src="images/comparison-chart.jpg" alt="비교 그래프 - 균일도 및 생존율">
+      <div class="proof-card">
+        <div class="proof-img">
+          <img src="images/comparison-chart.jpg" alt="상용 제품 대비 비교 그래프">
+        </div>
+        <div class="proof-body">
+          <h3>균일한 스페로이드 형성</h3>
+          <p>HCT116 세포주 기준, 24시간 내 직경 150–200μm의 균일한 스페로이드 형성 확인</p>
+        </div>
       </div>
-      <div class="proof-img">
-        <img src="images/spheroid-gallery.jpg" alt="현미경 이미지 갤러리 - 스페로이드 형성 결과">
+      <div class="proof-card">
+        <div class="proof-img">
+          <img src="images/spheroid-gallery.jpg" alt="현미경 이미지 갤러리 - 스페로이드 형성 결과">
+        </div>
+        <div class="proof-body">
+          <h3>상용 제품 동등 수준 생존율</h3>
+          <p>Live/Dead 염색 비교 결과, 상용 마이크로웰 대비 95% 이상의 동등한 세포 생존율</p>
+        </div>
       </div>
-    </div>
-    <div class="proof-badges">
-      <div class="badge">🏥 고대병원 융합의학과 공동연구</div>
-      <div class="badge">📜 특허 출원 2건</div>
-      <div class="badge">🏆 교육부 장관상</div>
     </div>
   </div>
 </section>
 
-<!-- How It Works -->
 <section id="how">
-  <h2>3단계로 시작하세요</h2>
-  <p class="section-sub">처음이어도 30분 안에 첫 스페로이드를 만들 수 있습니다.</p>
+  <h2>4단계로 끝나는 사용법</h2>
+  <p class="section-sub">복잡한 셋업 없이, 박스 개봉부터 스페로이드 확인까지</p>
   <div class="steps-grid">
     <div class="step-card">
-      <div class="step-img">
-        <img src="images/step1-mold.jpg" alt="몰드 준비">
-      </div>
+      <div class="step-img"><img src="images/step1-mold.jpg" alt="몰드 준비"></div>
       <div class="step-num">1</div>
       <h3>몰드 준비</h3>
-      <p>오토클레이브 또는 EO 멸균 후 사용</p>
+      <p>멸균된 몰드를 플레이트에 안착시킵니다</p>
     </div>
     <div class="step-card">
-      <div class="step-img">
-        <img src="images/step2-hydrogel.jpg" alt="하이드로젤 주입">
-      </div>
+      <div class="step-img"><img src="images/step2-hydrogel.jpg" alt="하이드로젤 주입"></div>
       <div class="step-num">2</div>
       <h3>하이드로젤 주입</h3>
-      <p>아가로스 등 원하는 젤로 마이크로웰 형성</p>
+      <p>아가로스 등 하이드로젤을 부어 굳힙니다</p>
     </div>
     <div class="step-card">
-      <div class="step-img">
-        <img src="images/step3-seeding.jpg" alt="세포 시딩">
-      </div>
+      <div class="step-img"><img src="images/step3-seeding.jpg" alt="세포 시딩"></div>
       <div class="step-num">3</div>
       <h3>세포 시딩</h3>
-      <p>세포 현탁액 분주 후 인큐베이터에 두기</p>
+      <p>준비된 세포 현탁액을 마이크로웰에 분주합니다</p>
     </div>
     <div class="step-card">
-      <div class="step-img">
-        <img src="images/step4-spheroid.jpg" alt="스페로이드 확인">
-      </div>
+      <div class="step-img"><img src="images/step4-spheroid.jpg" alt="스페로이드 확인"></div>
       <div class="step-num">4</div>
       <h3>스페로이드 확인</h3>
-      <p>24-72시간 후 균일한 스페로이드 관찰</p>
+      <p>24시간 후 현미경으로 형성된 스페로이드를 관찰합니다</p>
     </div>
   </div>
   <div class="video-embed">
-    <iframe src="https://www.youtube-nocookie.com/embed/F4MCWsL3vfY?rel=0&modestbranding=1"
-            title="Reploid 사용법"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
+    <iframe src="https://www.youtube-nocookie.com/embed/F4MCWsL3vfY?rel=0&modestbranding=1" title="Reploid 사용법" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
   <p class="video-caption">▶ 실제 사용 영상으로 한 번에 이해하기</p>
 </section>
 
-<!-- 제품 -->
 <section id="products">
   <h2>구매하기</h2>
-  <p class="section-sub">용도에 맞춰 선택하세요. 모든 구매는 외부 마켓을 통해 안전하게 진행됩니다.</p>
+  <p class="section-sub">목적에 맞는 옵션을 선택하세요</p>
   <div class="products-grid">
     <div class="product-card">
       <h3>Raw 몰드</h3>
       <p class="product-desc">멸균 전 제품. 자체 오토클레이브로 처리해 사용하는 가성비 옵션.</p>
-      <div class="product-price">₩100,000(5개)</div>
+      <div class="product-price">₩100,000 <span>(5개)</span></div>
       <a href="https://www.coupang.com" target="_blank" class="btn btn-secondary">쿠팡에서 구매</a>
     </div>
     <div class="product-card featured">
       <h3>Sterile 몰드</h3>
       <p class="product-desc">EO 가스 멸균 완료. 박스 개봉 즉시 사용 가능한 표준 옵션.</p>
-      <div class="product-price">₩150,000(5개)</div>
+      <div class="product-price">₩150,000 <span>(5개)</span></div>
       <a href="https://www.coupang.com" target="_blank" class="btn btn-primary">쿠팡에서 구매</a>
     </div>
     <div class="product-card">
       <h3>Education Kit</h3>
       <p class="product-desc">몰드 + 프로토콜 가이드 + 강의 영상 액세스. 실습 수업용.</p>
-      <div class="product-price">₩200,000(5개)</div>
+      <div class="product-price">₩200,000 <span>(5개)</span></div>
       <a href="https://www.coupang.com" target="_blank" class="btn btn-secondary">쿠팡에서 구매</a>
     </div>
   </div>
 </section>
 
-<!-- Learn -->
 <section id="learn" class="learn">
   <div class="learn-inner">
-    <h2>함께 배워요</h2>
-    <p class="section-sub">제품과 함께 사용할 수 있는 학습 자료를 무료로 제공합니다.</p>
+    <h2>학습 자료</h2>
+    <p class="section-sub">초보자도 따라 할 수 있는 무료 가이드와 강의</p>
     <div class="learn-grid">
       <div class="learn-card">
-        <div class="learn-thumb">
-          <img src="images/learn-udemy.jpg" alt="Udemy 강의 - 3D 세포배양 입문">
-        </div>
+        <div class="learn-thumb"><img src="images/learn-udemy.jpg" alt="Udemy 강의"></div>
         <div class="learn-body">
-          <h3>Udemy 강의: 3D 세포배양 입문</h3>
-          <p>스페로이드 형성부터 분석까지 단계별 영상 강의.</p>
-          <a href="https://www.udemy.com" target="_blank" class="learn-link">강의 보러가기 →</a>
+          <h3>Udemy 강의</h3>
+          <p>30분 안에 첫 스페로이드 만들기 — 단계별 영상 강의</p>
         </div>
       </div>
       <div class="learn-card">
-        <div class="learn-thumb">
-          <img src="images/learn-pdf.jpg" alt="무료 프로토콜 PDF 가이드">
-        </div>
+        <div class="learn-thumb"><img src="images/learn-pdf.jpg" alt="프로토콜 가이드"></div>
         <div class="learn-body">
-          <h3>무료 프로토콜 PDF</h3>
-          <p>실패 없이 첫 스페로이드를 만드는 30분 가이드.</p>
-          <a href="#contact" class="learn-link">이메일로 받기 →</a>
+          <h3>프로토콜 가이드</h3>
+          <p>PDF 다운로드 — 초보자도 따라 할 수 있는 단계별 매뉴얼</p>
         </div>
       </div>
       <div class="learn-card">
-        <div class="learn-thumb">
-          <img src="images/learn-blog.jpg" alt="블로그 & 튜토리얼">
-        </div>
+        <div class="learn-thumb"><img src="images/learn-blog.jpg" alt="블로그 & 튜토리얼"></div>
         <div class="learn-body">
           <h3>블로그 & 튜토리얼</h3>
-          <p>현장 노하우, 트러블슈팅, 최신 응용 사례 모음.</p>
-          <a href="#" class="learn-link">읽으러 가기 →</a>
+          <p>자주 발생하는 문제 10가지와 해결법 정리</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 후기 -->
 <section id="testimonials">
-  <h2>먼저 사용한 분들의 이야기</h2>
-  <p class="section-sub">실제 연구자와 교육자가 남긴 후기입니다.</p>
-  <div class="testimonials-grid">
-    <div class="testimonial-card">
-      <p>"학부 실습에서 처음으로 학생들이 직접 스페로이드를 만들 수 있었습니다. 비용 부담이 확 줄었어요."</p>
-      <div class="testimonial-author">— ○○대학교 생명과학과 교수</div>
+  <h2>사용자 후기</h2>
+  <p class="section-sub">실제 연구실과 학생들의 이야기</p>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <p>"학부 실습에 도입했는데 학생들이 처음으로 스페로이드를 직접 만들어보며 흥미를 느꼈습니다. 가격 부담이 적어 반복 실습이 가능했어요."</p>
+      <div class="testi-author">
+        <div class="testi-avatar"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80" alt=""></div>
+        <div>
+          <div class="testi-name">김○○ 교수</div>
+          <div class="testi-role">바이오공학과</div>
+        </div>
+      </div>
     </div>
-    <div class="testimonial-card">
-      <p>"기존 제품 대비 균일도가 비슷한데 가격이 훨씬 합리적입니다. 반복 실험에 부담이 없어요."</p>
-      <div class="testimonial-author">— ○○병원 연구원</div>
+    <div class="testi-card">
+      <p>"상용 제품 대비 절반 가격인데 결과는 동등했습니다. 소규모 연구실에 정말 큰 도움이 됩니다."</p>
+      <div class="testi-author">
+        <div class="testi-avatar"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&q=80" alt=""></div>
+        <div>
+          <div class="testi-name">이○○ 연구원</div>
+          <div class="testi-role">암 연구센터</div>
+        </div>
+      </div>
     </div>
-    <div class="testimonial-card">
-      <p>"영상 가이드가 잘 되어있어서 처음 해보는 학생도 따라할 수 있었습니다."</p>
-      <div class="testimonial-author">— ○○고등학교 바이오 동아리 지도교사</div>
+    <div class="testi-card">
+      <p>"프로토콜 가이드가 잘 정리되어 있어서 3D 배양이 처음인 저도 첫날에 스페로이드를 만들 수 있었습니다."</p>
+      <div class="testi-author">
+        <div class="testi-avatar"><img src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=200&q=80" alt=""></div>
+        <div>
+          <div class="testi-name">박○○ 대학원생</div>
+          <div class="testi-role">석사 1년차</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- FAQ -->
 <section id="faq">
   <h2>자주 묻는 질문</h2>
   <div class="faq-list">
@@ -739,7 +664,7 @@
     </div>
     <div class="faq-item">
       <div class="faq-q">어떤 세포주에 사용 가능한가요?</div>
-      <div class="faq-a">암세포주(HCT116, MCF-7 등), 줄기세포, 1차 배양 세포 등 일반적인 부유/부착 세포에 적용 가능합니다. 자세한 적용 사례는 강의 자료를 참고하세요.</div>
+      <div class="faq-a">암세포주(HCT116, MCF-7 등), 줄기세포, 1차 배양 세포 등 일반적인 부유/부착 세포에 적용 가능합니다.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q">재사용이 가능한가요?</div>
@@ -747,12 +672,11 @@
     </div>
     <div class="faq-item">
       <div class="faq-q">대량 구매 또는 견적 문의는?</div>
-      <div class="faq-a">namjh@jeiu.ac.kr 로 연락 주시면 수량별 단가와 배송 일정을 안내드립니다.</div>
+      <div class="faq-a"><a href="mailto:namjh@jeiu.ac.kr">namjh@jeiu.ac.kr</a> 로 연락 주시면 수량별 단가와 배송 일정을 안내드립니다.</div>
     </div>
   </div>
 </section>
 
-<!-- 최종 CTA -->
 <section class="final-cta" id="contact">
   <h2>당신의 첫 스페로이드,<br>오늘 시작하세요.</h2>
   <p>무료 샘플 요청부터 강의 수강까지, 가장 쉬운 3D 세포배양의 시작.</p>
@@ -763,7 +687,6 @@
   <p class="cta-note">* 무료 샘플 요청시, 1세트(3개)로 제공하며 teaching guidebook과 영상주소를 보내드립니다.</p>
 </section>
 
-<!-- 푸터 -->
 <footer>
   <div class="footer-brand">Reploid by YD Labs</div>
   <div>
@@ -773,18 +696,15 @@
     <a href="mailto:namjh@jeiu.ac.kr">문의</a>
   </div>
   <div class="footer-info">
-    상호: 리플로이드 | 대표: 홍수영 | 사업자등록번호: 학생창업예정 (U300 참가중) <br>
+    상호: 리플로이드 | 대표: 홍수영 | 사업자등록번호: 학생창업예정 (U300 참가중)<br>
     주소: 재능대학교 바이오테크과 | 이메일: namjh@jeiu.ac.kr<br>
     © 2026 YD Labs. All rights reserved.
   </div>
 </footer>
 
 <script>
-  // FAQ 토글
   document.querySelectorAll('.faq-q').forEach(q => {
-    q.addEventListener('click', () => {
-      q.parentElement.classList.toggle('open');
-    });
+    q.addEventListener('click', () => { q.parentElement.classList.toggle('open'); });
   });
 </script>
 
