@@ -11,24 +11,24 @@
 <style>
   /* ===== 다크 모드 컬러 팔레트 ===== */
   :root {
-    --bg-primary: #0a0e0d;      /* 가장 어두운 배경 (거의 검정) */
-    --bg-secondary: #111614;    /* 섹션 배경 */
-    --bg-card: #181f1c;         /* 카드 배경 */
-    --bg-elevated: #1f2723;     /* 강조 카드 */
-    --border: #252d29;          /* 기본 테두리 */
-    --border-light: #2d3631;    /* 밝은 테두리 */
+    --bg-primary: #0a0e0d;
+    --bg-secondary: #111614;
+    --bg-card: #181f1c;
+    --bg-elevated: #1f2723;
+    --border: #252d29;
+    --border-light: #2d3631;
 
-    --text-primary: #e6ebe8;    /* 메인 텍스트 (부드러운 화이트) */
-    --text-secondary: #9ba8a2;  /* 보조 텍스트 */
-    --text-muted: #6b766f;      /* 흐린 텍스트 */
+    --text-primary: #e6ebe8;
+    --text-secondary: #9ba8a2;
+    --text-muted: #6b766f;
 
-    --accent: #7eb69a;          /* 세이지 그린 (부드러운 민트) */
+    --accent: #7eb69a;
     --accent-hover: #95c7ac;
-    --accent-dim: #5a8a76;      /* 어두운 세이지 */
+    --accent-dim: #5a8a76;
     --accent-glow: rgba(126, 182, 154, 0.15);
 
-    --danger: #d97c7c;          /* 부드러운 레드 */
-    --gold: #c9a961;            /* 골드 (BEST 뱃지) */
+    --danger: #d97c7c;
+    --gold: #c9a961;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -98,11 +98,18 @@
     border-color: var(--accent);
   }
 
+  /* ===== CTA Note (간격 확실히 띄우기) ===== */
   .cta-note {
-    text-align: center; color: var(--text-muted);
+    display: block;
+    text-align: center;
+    color: var(--text-muted);
     font-size: clamp(10px, 2.2vw, 13px);
-    margin-top: 48px; line-height: 1.5; white-space: nowrap;
+    margin: 48px 0 0 0;
+    padding-top: 16px;
+    line-height: 1.5;
+    white-space: nowrap;
   }
+  .final-cta .cta-note { color: var(--text-muted); }
 
   /* ===== Hero ===== */
   .hero {
@@ -390,7 +397,6 @@
     color: var(--text-secondary); font-size: 17px;
     max-width: 600px; margin: 0 auto 32px;
   }
-  .final-cta .cta-note { color: var(--text-muted); }
 
   /* ===== Footer ===== */
   footer {
@@ -433,6 +439,7 @@
     .problem-text h2, .solution-text h2 { text-align: center; }
     .proof-grid, .products-grid, .learn-grid, .testi-grid { grid-template-columns: 1fr; }
     .steps-grid { grid-template-columns: repeat(2, 1fr); }
+    .cta-note { margin-top: 36px; white-space: normal; }
   }
 </style>
 </head>
